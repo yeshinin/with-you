@@ -118,7 +118,7 @@ if (octo) {
   );
 
   octo.addEventListener("mousemove", (e) => {
-    if (!octo.classList.contains("open")) return;
+    if (!octo.classList.contains("open") || window.matchMedia("(max-width: 720px)").matches) return;
     // reading the open label keeps the focus where it is
     if (e.target.closest(".arm.on")) return;
     const box = hub.getBoundingClientRect();
