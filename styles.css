@@ -133,6 +133,33 @@ sup { font-size: 0.6em; color: var(--muted); margin-left: 1px; }
 .nav-links { display: flex; gap: 32px; }
 .nav-links a { text-decoration: none; font-size: 16px; color: var(--ink-2); }
 .nav-links a:hover { color: var(--ink); }
+.nav-links a[aria-current="page"] { color: var(--ink); font-weight: 600; }
+.nav-actions { display: flex; align-items: center; gap: 10px; }
+
+/* phone menu button (two lines that become an ×) */
+.menu-toggle {
+  display: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  background: transparent;
+  cursor: pointer;
+  position: relative;
+}
+.menu-toggle span {
+  position: absolute;
+  left: 11px;
+  right: 11px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--ink);
+  transition: transform 0.2s ease, top 0.2s ease;
+}
+.menu-toggle span:first-child { top: 15px; }
+.menu-toggle span:last-child { top: 22px; }
+.nav.menu-open .menu-toggle span:first-child { top: 18px; transform: rotate(45deg); }
+.nav.menu-open .menu-toggle span:last-child { top: 18px; transform: rotate(-45deg); }
 
 /* ---------- Hero ---------- */
 .hero {
@@ -594,6 +621,9 @@ sup { font-size: 0.6em; color: var(--muted); margin-left: 1px; }
 
 /* ---------- Founder ---------- */
 .founder { padding-top: 60px; padding-bottom: 60px; }
+.founder-page { position: relative; z-index: 1; padding-top: 110px; }
+/* keeps the decorative orb from widening the page */
+.page-clip { position: relative; overflow: hidden; }
 .founder-card {
   display: grid;
   grid-template-columns: auto 1fr;
@@ -659,6 +689,22 @@ sup { font-size: 0.6em; color: var(--muted); margin-left: 1px; }
   body { font-size: 17px; }
   .nav { padding: 14px 16px; }
   .nav-links { display: none; }
+  .menu-toggle { display: block; }
+  .nav.menu-open .nav-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    padding: 8px 16px 16px;
+    background: var(--bg);
+    border-bottom: 1px dotted var(--line);
+  }
+  .nav.menu-open .nav-links a { padding: 14px 0; font-size: 18px; border-top: 1px dotted var(--line); }
+  .nav.menu-open .nav-links a:first-child { border-top: 0; }
+  .founder-page { padding-top: 64px; }
   .container { padding: 0 16px; }
   .hero { padding: 72px 16px 0; }
   .orb-1 { width: 340px; height: 340px; right: -140px; top: 0; }

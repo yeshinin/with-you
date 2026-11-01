@@ -126,3 +126,16 @@ if (octo) {
     focusArm(nearest.id);
   });
 }
+
+// Phone menu: the button toggles the nav links; picking a link closes it
+const header = document.querySelector(".nav");
+const menuButton = document.querySelector(".menu-toggle");
+
+if (header && menuButton) {
+  const setMenu = (open) => {
+    header.classList.toggle("menu-open", open);
+    menuButton.setAttribute("aria-expanded", String(open));
+  };
+  menuButton.addEventListener("click", () => setMenu(!header.classList.contains("menu-open")));
+  header.querySelectorAll(".nav-links a").forEach((link) => link.addEventListener("click", () => setMenu(false)));
+}
