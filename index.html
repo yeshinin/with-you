@@ -62,15 +62,122 @@
         </div>
       </div>
 
-      <ul class="ticker" aria-label="What With You helps with">
-        <li>Your care, your language, your pace</li>
-        <li>Voice guidance that walks through tasks with you</li>
-        <li>Hands-on community health worker support</li>
-        <li>Early barrier detection, timely help</li>
-        <li>Tailored, clinician-reviewed timeline</li>
-        <li>Visit-ready questions</li>
-        <li>Peers who’ve been there</li>
-      </ul>
+      <!-- Octopus diagram: With You at the centre, seven kinds of support as arms -->
+      <div class="octo reveal" aria-label="What With You does">
+        <svg class="octo-arms" viewBox="0 0 1000 540" aria-hidden="true">
+          <defs>
+            <linearGradient id="arm-grad" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="1000" y2="0">
+              <stop offset="0" style="stop-color: var(--c2)" />
+              <stop offset="0.5" style="stop-color: var(--c1)" />
+              <stop offset="1" style="stop-color: var(--c3)" />
+            </linearGradient>
+          </defs>
+          <path data-arm="1" style="--d:0.00s" pathLength="1" d="M500 270 C364 240, 364 46, 228 70" />
+          <circle data-arm="1" cx="228" cy="70" r="5" />
+          <path data-arm="2" style="--d:0.12s" pathLength="1" d="M500 270 C364 260, 364 192, 228 200" />
+          <circle data-arm="2" cx="228" cy="200" r="5" />
+          <path data-arm="3" style="--d:0.24s" pathLength="1" d="M500 270 C364 280, 364 348, 228 340" />
+          <circle data-arm="3" cx="228" cy="340" r="5" />
+          <path data-arm="4" style="--d:0.36s" pathLength="1" d="M500 270 C364 300, 364 494, 228 470" />
+          <circle data-arm="4" cx="228" cy="470" r="5" />
+          <path data-arm="5" style="--d:0.48s" pathLength="1" d="M500 270 C636 246, 636 91, 772 110" />
+          <circle data-arm="5" cx="772" cy="110" r="5" />
+          <path data-arm="6" style="--d:0.60s" pathLength="1" d="M500 270 C636 270, 636 270, 772 270" />
+          <circle data-arm="6" cx="772" cy="270" r="5" />
+          <path data-arm="7" style="--d:0.72s" pathLength="1" d="M500 270 C636 294, 636 449, 772 430" />
+          <circle data-arm="7" cx="772" cy="430" r="5" />
+        </svg>
+
+        <div class="hub" aria-live="polite">
+          <div class="hub-default">
+            <div class="hub-wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+            <strong class="serif-gradient">With You</strong>
+            <span>Your voice-first recovery companion</span>
+            <small class="hub-hint">Hover an arm to explore</small>
+          </div>
+          <div class="hub-detail" hidden></div>
+        </div>
+
+        <ul class="arms">
+          <li class="arm arm-l" data-arm="1" style="top:13.0%;right:78.2%">
+            <button type="button" aria-expanded="false">Your care, your language, your pace</button>
+            <div class="arm-detail">
+              <h4>Your care, your language, your pace</h4>
+              <ul>
+                <li>Explains your diagnosis, procedures and discharge plan in plain words</li>
+                <li>Read it, see it, or hear it, in the language you’re most comfortable with</li>
+                <li>Go deeper when you’re ready; skip what you don’t need yet</li>
+              </ul>
+            </div>
+          </li>
+          <li class="arm arm-l" data-arm="2" style="top:37.0%;right:78.2%">
+            <button type="button" aria-expanded="false">Voice guidance that walks through tasks with you</button>
+            <div class="arm-detail">
+              <h4>Voice guidance that walks through tasks with you</h4>
+              <ul>
+                <li>Talks you through medicines, measurements and care tasks, one step at a time</li>
+                <li>Waits for you to say “done”, and asks what felt difficult</li>
+                <li>Log temperature, drain output or symptoms just by speaking</li>
+              </ul>
+            </div>
+          </li>
+          <li class="arm arm-l" data-arm="3" style="top:63.0%;right:78.2%">
+            <button type="button" aria-expanded="false">Hands-on community health worker support</button>
+            <div class="arm-detail">
+              <h4>Hands-on community health worker support</h4>
+              <ul>
+                <li>Practise tasks like dressing changes before you leave the hospital</li>
+                <li>A trained health worker can show you again at home if you’re unsure</li>
+                <li>Picture guides from your care team to refresh what you learned</li>
+              </ul>
+            </div>
+          </li>
+          <li class="arm arm-l" data-arm="4" style="top:87.0%;right:78.2%">
+            <button type="button" aria-expanded="false">Early barrier detection, timely help</button>
+            <div class="arm-detail">
+              <h4>Early barrier detection, timely help</h4>
+              <ul>
+                <li>Asks early: can you get your medicines, a ride, help at home?</li>
+                <li>Connects you with transport, pharmacy and community resources</li>
+                <li>Follows up until it’s actually resolved</li>
+              </ul>
+            </div>
+          </li>
+          <li class="arm arm-r" data-arm="5" style="top:20.4%;left:78.2%">
+            <button type="button" aria-expanded="false">Tailored, clinician-reviewed timeline</button>
+            <div class="arm-detail">
+              <h4>Tailored, clinician-reviewed timeline</h4>
+              <ul>
+                <li>What to expect each week, based on your care team’s plan</li>
+                <li>Everyday life: bathing, sleep, eating, movement, work</li>
+                <li>Warning signs to watch for, and whom to call</li>
+              </ul>
+            </div>
+          </li>
+          <li class="arm arm-r" data-arm="6" style="top:50.0%;left:78.2%">
+            <button type="button" aria-expanded="false">Visit-ready questions</button>
+            <div class="arm-detail">
+              <h4>Visit-ready questions</h4>
+              <ul>
+                <li>Share how you’re doing in short voice check-ins, with no diary to keep</li>
+                <li>Before each visit, get a summary of what changed and your top concerns</li>
+                <li>Suggested questions, so nothing important gets forgotten</li>
+              </ul>
+            </div>
+          </li>
+          <li class="arm arm-r" data-arm="7" style="top:79.6%;left:78.2%">
+            <button type="button" aria-expanded="false">Peers who’ve been there</button>
+            <div class="arm-detail">
+              <h4>Peers who’ve been there</h4>
+              <ul>
+                <li>Connect with people who’ve had a similar journey</li>
+                <li>Milestone stories to read, watch or hear</li>
+                <li>Always labelled as lived experience, not medical advice</li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </div>
     </section>
 
     <!-- ============ BELIEF ============ -->
@@ -121,7 +228,7 @@
         <div class="track track-without">
           <h3>Without support</h3>
           <ol>
-            <li><span class="day">Friday</span><strong>Home with more questions than answers.</strong>A folder of instructions, a hurried explanation, and unfamiliar medical terms in a language they’re less comfortable with.</li>
+            <li><span class="day">Discharge day</span><strong>Home with more questions than answers.</strong>A folder of instructions, a hurried explanation, and unfamiliar medical terms in a language they’re less comfortable with.</li>
             <li><span class="day">Day 2</span><strong>Five new medicines.</strong>Which need food? New things to log and monitor. The caregiver searches the paperwork again.</li>
             <li><span class="day">Day 4</span><strong>A new worry, late at night.</strong>The wound looks different during a dressing change, and they’re unsure what it means. The drain looks clogged, and they’re not sure how to fix it.</li>
             <li><span class="day">Day 6</span><strong>No ride to the follow-up appointment.</strong>It quietly gets missed.</li>

@@ -75,3 +75,45 @@ if (carousel) {
   carousel.addEventListener("pointerup", endDrag);
   carousel.addEventListener("pointercancel", endDrag);
 }
+
+// Octopus diagram: hovering/focusing an arm shows its details in the hub;
+// on phones the arms are a tap-to-expand list instead
+const octo = document.querySelector(".octo");
+
+if (octo) {
+  const arms = [...octo.querySelectorAll(".arm")];
+  const marks = [...octo.querySelectorAll(".octo-arms [data-arm]")];
+  const hubDefault = octo.querySelector(".hub-default");
+  const hubDetail = octo.querySelector(".hub-detail");
+  const isPhone = () => window.matchMedia("(max-width: 720px)").matches;
+
+  const show = (id) => {
+    if (id) octo.dataset.active = id;
+    else delete octo.dataset.active;
+    arms.forEach((arm) => arm.classList.toggle("on", arm.dataset.arm === id));
+    marks.forEach((mark) => mark.classList.toggle("on", mark.dataset.arm === id));
+    const active = arms.find((arm) => arm.dataset.arm === id);
+    hubDetail.innerHTML = active ? active.querySelector(".arm-detail").innerHTML : "";
+    hubDetail.hidden = !active;
+    hubDefault.hidden = Boolean(active);
+  };
+
+  arms.forEach((arm) => {
+    const button = arm.querySelector("button");
+    button.addEventListener("mouseenter", () => !isPhone() && show(arm.dataset.arm));
+    button.addEventListener("focus", () => !isPhone() && show(arm.dataset.arm));
+    button.addEventListener("click", () => {
+      if (isPhone()) {
+        const open = arm.classList.toggle("open");
+        button.setAttribute("aria-expanded", String(open));
+      } else {
+        show(arm.dataset.arm);
+      }
+    });
+  });
+
+  octo.addEventListener("mouseleave", () => show(null));
+  octo.addEventListener("focusout", (e) => {
+    if (!octo.contains(e.relatedTarget)) show(null);
+  });
+}
