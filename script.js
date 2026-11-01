@@ -76,44 +76,8 @@ if (carousel) {
   carousel.addEventListener("pointercancel", endDrag);
 }
 
-// Soft chime, synthesised (no audio file). Browsers only allow sound after the
-// visitor has clicked, tapped or pressed a key, so we unlock on the first one.
-let audio = null;
-const unlockAudio = () => {
-  const Ctx = window.AudioContext || window.webkitAudioContext;
-  if (!Ctx) return;
-  audio = audio || new Ctx();
-  if (audio.state === "suspended") audio.resume();
-};
-["pointerdown", "keydown", "touchstart"].forEach((type) =>
-  window.addEventListener(type, unlockAudio, { passive: true })
-);
-
-// one gentle note per arm (a pentatonic scale, so any order sounds pleasant)
-const NOTES = [523.25, 587.33, 659.25, 783.99, 880.0, 1046.5, 1174.66];
-const chime = (index) => {
-  if (!audio || audio.state !== "running") return;
-  const now = audio.currentTime;
-  const out = audio.createGain();
-  out.gain.setValueAtTime(0.0001, now);
-  out.gain.exponentialRampToValueAtTime(0.08, now + 0.01);
-  out.gain.exponentialRampToValueAtTime(0.0001, now + 0.9);
-  out.connect(audio.destination);
-  // fundamental plus a quiet bell-like overtone
-  [[1, 1], [2.76, 0.25]].forEach(([ratio, level]) => {
-    const osc = audio.createOscillator();
-    const gain = audio.createGain();
-    osc.type = "sine";
-    osc.frequency.value = NOTES[index] * ratio;
-    gain.gain.value = level;
-    osc.connect(gain).connect(out);
-    osc.start(now);
-    osc.stop(now + 0.95);
-  });
-};
-
 // Octopus diagram: hovering (or tapping) the hub grows the arms out; while
-// they're out, the arm nearest the cursor is highlighted with a soft chime
+// they're out, the arm nearest the cursor is highlighted
 const octo = document.querySelector(".octo");
 
 if (octo) {
@@ -128,12 +92,8 @@ if (octo) {
 
   const focusArm = (id) => {
     if (id === (octo.dataset.active || null)) return;
-    if (id) {
-      octo.dataset.active = id;
-      chime(Number(id) - 1);
-    } else {
-      delete octo.dataset.active;
-    }
+    if (id) octo.dataset.active = id;
+    else delete octo.dataset.active;
     arms.forEach((arm) => arm.classList.toggle("on", arm.dataset.arm === id));
     marks.forEach((mark) => mark.classList.toggle("on", mark.dataset.arm === id));
   };
