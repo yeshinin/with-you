@@ -7,13 +7,25 @@
   <meta name="description" content="A voice-first companion for patients and caregivers, from hospital admission through recovery, until you reach your own new normal." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@1&family=Karla:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
   <script>document.documentElement.classList.add("js")</script>
   <script src="script.js" defer></script>
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><radialGradient id='g'><stop offset='0' stop-color='%23EFA6B4'/><stop offset='1' stop-color='%23E9846F'/></radialGradient></defs><circle cx='50' cy='50' r='44' fill='url(%23g)'/></svg>" />
 </head>
 <body>
+
+  <!-- Liquid "melt" filter used by .melt text: slow warping + soft gooey edges -->
+  <svg width="0" height="0" style="position: absolute" aria-hidden="true">
+    <filter id="melt" x="-10%" y="-30%" width="120%" height="160%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.006 0.018" numOctaves="1" seed="8" result="noise">
+        <animate attributeName="baseFrequency" dur="8s" values="0.006 0.018;0.009 0.026;0.006 0.018" repeatCount="indefinite" />
+      </feTurbulence>
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="12" xChannelSelector="R" yChannelSelector="G" result="warp" />
+      <feGaussianBlur in="warp" stdDeviation="0.6" result="soft" />
+      <feColorMatrix in="soft" type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 10 -2.5" />
+    </filter>
+  </svg>
 
   <!-- ============ NAV ============ -->
   <header class="nav">
@@ -136,7 +148,7 @@
     <section class="how" id="how">
       <div class="container">
         <p class="eyebrow">How it works</p>
-        <h2>Six ways With You stays with you.</h2>
+        <h2>Six ways <em class="melt">With You</em> stays with you.</h2>
 
         <div class="modes" aria-label="Ways to receive guidance">
           <span>Read it</span><span>See it</span><span>Hear it</span><span>In your language</span>

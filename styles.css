@@ -325,6 +325,28 @@ sup { font-size: 0.6em; color: var(--muted); margin-left: 1px; }
 
 /* ---------- How it works ---------- */
 .how { padding: 120px 0 60px; }
+.how h2 { max-width: none; }
+.melt {
+  display: inline-block;
+  padding: 0 0.08em;
+  font-family: "Instrument Serif", Georgia, serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: 1.22em;
+  letter-spacing: 0;
+  line-height: 1;
+  background: linear-gradient(100deg,
+    color-mix(in oklab, var(--c2), #1e0e36 45%),
+    color-mix(in oklab, var(--c1), #3a0c26 40%) 50%,
+    color-mix(in oklab, var(--c3), #0c2422 50%));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: url(#melt);
+}
+@media (prefers-reduced-motion: reduce) {
+  .melt { filter: none; }
+}
 .modes { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
 .modes span {
   padding: 8px 16px;
