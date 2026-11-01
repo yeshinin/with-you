@@ -9,6 +9,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
+  <script>document.documentElement.classList.add("js")</script>
+  <script src="script.js" defer></script>
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><radialGradient id='g'><stop offset='0' stop-color='%23EFA6B4'/><stop offset='1' stop-color='%23E9846F'/></radialGradient></defs><circle cx='50' cy='50' r='44' fill='url(%23g)'/></svg>" />
 </head>
 <body>
@@ -51,78 +53,63 @@
       </div>
 
       <ul class="ticker" aria-label="What With You helps with">
-        <li>Discharge instructions, explained</li>
-        <li>Medicine reminders by voice</li>
-        <li>Step-by-step care tasks</li>
-        <li>Week-by-week recovery timeline</li>
-        <li>Transport &amp; pharmacy barriers</li>
-        <li>Appointment-ready summaries</li>
-        <li>Peer support</li>
+        <li>Your care, in your language, at your pace</li>
+        <li>Voice guidance that walks through tasks with you</li>
+        <li>CHWs to teach hands-on</li>
+        <li>Practical barriers spotted early, connections to help</li>
+        <li>Clinician-reviewed, tailored timeline</li>
+        <li>Questions ready for every visit</li>
+        <li>Peers who’ve been there</li>
       </ul>
     </section>
 
     <!-- ============ BELIEF ============ -->
     <section class="belief">
       <p>
-        Support should not depend on having the energy to understand everything,
-        knowing the right questions, or being able to afford a patient navigator.
+        You deserve guidance that meets you where you are, with room for your questions,
+        patience for what feels unfamiliar, and the things that matter to you.
       </p>
     </section>
 
     <!-- ============ STATS ============ -->
     <section class="stats" id="why">
       <div class="container">
-        <p class="eyebrow eyebrow-light">The care gap at home</p>
-        <h2>Families are doing the work of nurses, mostly without training.</h2>
+        <p class="eyebrow eyebrow-light reveal">The care gap at home</p>
+        <h2 class="reveal">Families are doing the work of nurses, mostly without training.</h2>
 
-        <div class="stat-grid">
-          <div class="stat">
-            <span class="stat-num">63M</span>
-            <span class="stat-label">Americans, about <strong>1 in 4 adults</strong>, are now family caregivers.<sup>1</sup></span>
-          </div>
-          <div class="stat">
-            <span class="stat-num">+45%</span>
-            <span class="stat-label">growth in the number of family caregivers from 2015 to 2025.<sup>1</sup></span>
-          </div>
-          <div class="stat">
+        <ol class="stat-list">
+          <li class="stat reveal">
+            <span class="stat-num">1 in 4</span>
+            <span class="stat-label">U.S. adults, about 63 million people, are now family caregivers. That’s up 45% in a decade.<sup>1</sup></span>
+          </li>
+          <li class="stat reveal">
             <span class="stat-num">55%</span>
-            <span class="stat-label">of caregivers supporting adults perform medical or nursing tasks: medicines, wound care, monitoring, equipment.<sup>1</sup></span>
-          </div>
-          <div class="stat stat-accent">
-            <span class="stat-num">22%</span>
-            <span class="stat-label">of those caregivers say they received <strong>any training</strong> to do it.<sup>1</sup></span>
-          </div>
-        </div>
+            <span class="stat-label">of them perform medical or nursing tasks: medicines, wound care, monitoring, medical equipment.<sup>1</sup></span>
+          </li>
+          <li class="stat stat-accent reveal">
+            <span class="stat-num">Only 22%</span>
+            <span class="stat-label">of those performing these tasks report receiving training.<sup>1</sup></span>
+          </li>
+          <li class="stat reveal">
+            <span class="stat-num">1 in 5</span>
+            <span class="stat-label">patients experience an adverse event after leaving the hospital.<sup>2</sup></span>
+          </li>
+        </ol>
 
-        <div class="stat-row">
-          <div class="mini">
-            <span class="mini-num">1 in 5</span>
-            <span>patients experience an adverse event after leaving the hospital.<sup>3</sup></span>
-          </div>
-          <div class="mini">
-            <span class="mini-num">62%</span>
-            <span>of adults 65+ live with two or more chronic conditions (26.4% of all U.S. adults).<sup>4</sup></span>
-          </div>
-          <div class="mini">
-            <span class="mini-num">1 in 5</span>
-            <span>Americans will be 65 or older by 2030.<sup>5</sup></span>
-          </div>
-        </div>
-
-        <p class="stats-foot">
-          Half of family caregivers already perform complicated tasks like injections,
-          tube feedings and managing medical equipment, often with little or no
-          preparation.<sup>2</sup> The need is growing every year.
+        <p class="stats-foot reveal">
+          And the need is growing: by 2030, about 1 in 5 Americans will be 65 or older,<sup>4</sup>
+          and 62% of adults over 65 already live with two or more chronic conditions.<sup>3</sup>
         </p>
       </div>
     </section>
 
     <!-- ============ TWO WEEKS ============ -->
     <section class="compare container">
-      <p class="eyebrow">The same discharge, two very different weeks</p>
-      <h2>Recovery happens at home, in the days nobody plans for.</h2>
+      <p class="eyebrow">When the care plan meets real life</p>
+      <h2>Going home is a milestone. Figuring out life at home is a journey.</h2>
       <p class="section-lede">
-        One patient. One caregiver. Discharged on a Friday with a folder of instructions.
+        Medicines, meals, unfamiliar tasks, and questions that surface along the way.
+        Here’s how support can change the experience.
       </p>
 
       <div class="compare-grid">
@@ -277,7 +264,6 @@
         <summary>Sources</summary>
         <ol>
           <li>AARP &amp; National Alliance for Caregiving, <em>Caregiving in the US 2025</em>.</li>
-          <li>AARP Public Policy Institute, <em>Home Alone Revisited: Family Caregivers Providing Complex Care</em>, 2019.</li>
           <li>Forster AJ et al., “The incidence and severity of adverse events affecting patients after discharge from the hospital,” <em>Annals of Internal Medicine</em>, 2003.</li>
           <li>CDC National Center for Health Statistics, National Health Interview Survey, 2024.</li>
           <li>U.S. Census Bureau population projections.</li>
