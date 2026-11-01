@@ -326,6 +326,41 @@ sup { font-size: 0.6em; color: var(--muted); margin-left: 1px; }
 /* ---------- How it works ---------- */
 .how { padding: 120px 0 60px; }
 .how h2 { max-width: none; }
+/* Italic serif in the shifting palette, used for accents */
+.serif-gradient {
+  font-family: "Instrument Serif", Georgia, serif;
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: 0;
+  background: linear-gradient(100deg,
+    color-mix(in oklab, var(--c2), #1e0e36 45%),
+    color-mix(in oklab, var(--c1), #3a0c26 40%) 50%,
+    color-mix(in oklab, var(--c3), #0c2422 50%));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Closing statement after the six ways */
+.statement { padding-top: 70px; padding-bottom: 50px; text-align: center; }
+.statement p {
+  max-width: 30ch;
+  margin: 0 auto;
+  font-size: clamp(28px, 3.6vw, 44px);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+.statement .serif-gradient {
+  text-wrap: balance;
+  display: block;
+  margin-top: 18px;
+  padding: 0 0.1em 0.1em;
+  font-size: 1.25em;
+  line-height: 1.1;
+}
+
 .melt {
   display: inline-block;
   padding: 0 0.08em;

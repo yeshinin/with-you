@@ -15,12 +15,10 @@
 </head>
 <body>
 
-  <!-- Liquid "melt" filter used by .melt text: slow warping + soft gooey edges -->
+  <!-- Static "melt" filter used by .melt text: warped, softened letter shapes -->
   <svg width="0" height="0" style="position: absolute" aria-hidden="true">
     <filter id="melt" x="-10%" y="-30%" width="120%" height="160%">
-      <feTurbulence type="fractalNoise" baseFrequency="0.006 0.018" numOctaves="1" seed="8" result="noise">
-        <animate attributeName="baseFrequency" dur="8s" values="0.006 0.018;0.009 0.026;0.006 0.018" repeatCount="indefinite" />
-      </feTurbulence>
+      <feTurbulence type="fractalNoise" baseFrequency="0.006 0.018" numOctaves="1" seed="8" result="noise" />
       <feDisplacementMap in="SourceGraphic" in2="noise" scale="12" xChannelSelector="R" yChannelSelector="G" result="warp" />
       <feGaussianBlur in="warp" stdDeviation="0.6" result="soft" />
       <feColorMatrix in="soft" type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 10 -2.5" />
@@ -115,7 +113,7 @@
       <p class="eyebrow">When the care plan meets real life</p>
       <h2>Going home is a milestone. Figuring out life at home is a journey.</h2>
       <p class="section-lede">
-        Medicines, meals, unfamiliar tasks, and questions that surface along the way.
+        Medicines, things to watch out for, learning unfamiliar tasks, and questions that surface along the way.
         Here’s how support can change the experience.
       </p>
 
@@ -173,7 +171,7 @@
             <div class="slide-text">
               <span class="num">02 · Care at home</span>
               <h3>Talked through every task.</h3>
-              <p>Voice prompts, picture guides, and hands-on help from community health workers.</p>
+              <p>Voice prompts, visual aids, and hands-on help from trained health workers.</p>
             </div>
           </article>
           <article class="slide">
@@ -216,6 +214,14 @@
           Peer stories are always labelled as experience, not medical advice.
         </p>
       </div>
+    </section>
+
+    <!-- ============ CLOSING STATEMENT ============ -->
+    <section class="statement container reveal">
+      <p>
+        The support to understand your care, advocate for yourself, and make informed decisions.
+        <span class="serif-gradient">There should never be a silent break in recovery.</span>
+      </p>
     </section>
 
     <!-- ============ FOUNDER ============ -->
