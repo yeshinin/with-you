@@ -709,6 +709,14 @@ sup { font-size: 0.6em; color: var(--muted); margin-left: 1px; }
   color: var(--ink);
   background: linear-gradient(135deg, var(--c1), var(--c2) 50%, var(--c3));
 }
+/* founder photo: circle with a thin palette-colour ring */
+.avatar-photo {
+  width: 120px;
+  height: 120px;
+  padding: 4px;
+  object-fit: cover;
+  background: linear-gradient(135deg, var(--c1), var(--c2) 50%, var(--c3));
+}
 .founder-story { max-width: 68ch; }
 .founder-story p { margin: 0 0 18px; font-size: 19px; line-height: 1.65; color: var(--ink-2); }
 .founder-story p:first-child { font-size: clamp(20px, 2vw, 23px); line-height: 1.55; color: var(--ink); font-weight: 500; }
@@ -808,6 +816,7 @@ sup { font-size: 0.6em; color: var(--muted); margin-left: 1px; }
   .how { padding-top: 90px; }
   .founder-card { grid-template-columns: 1fr; padding: 28px; gap: 20px; }
   .avatar { width: 64px; height: 64px; font-size: 28px; }
+  .avatar-photo { width: 96px; height: 96px; }
   .contact { padding: 100px 0; }
   .orb-3 { width: 360px; height: 360px; }
   .btn-lg { font-size: 17px; padding: 16px 24px; }
