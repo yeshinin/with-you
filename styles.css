@@ -194,6 +194,8 @@ sup { font-size: 0.6em; color: var(--muted); margin-left: 1px; }
 }
 
 /* ---------- Octopus diagram (hero) ---------- */
+/* Only the hub shows at first; hovering it (.open) grows the arms out.
+   The arm nearest the cursor gets .on and the rest dim. */
 .octo {
   position: relative;
   z-index: 1;
@@ -201,7 +203,7 @@ sup { font-size: 0.6em; color: var(--muted); margin-left: 1px; }
   aspect-ratio: 1000 / 540;
   margin: 72px auto 0;
 }
-.octo-arms { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.octo-arms { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; }
 .octo-arms path {
   fill: none;
   stroke: url(#arm-grad);
@@ -209,14 +211,13 @@ sup { font-size: 0.6em; color: var(--muted); margin-left: 1px; }
   stroke-linecap: round;
   stroke-dasharray: 1;
   stroke-dashoffset: 1;
-  transition: stroke-dashoffset 1.1s ease var(--d), opacity 0.25s ease, stroke-width 0.25s ease;
+  transition: stroke-dashoffset 0.45s ease, opacity 0.25s ease, stroke-width 0.25s ease;
 }
-.octo-arms circle { fill: url(#arm-grad); opacity: 0; transition: opacity 0.4s ease 1.2s, r 0.25s ease; }
-.octo.is-visible .octo-arms path, html:not(.js) .octo-arms path { stroke-dashoffset: 0; }
-.octo.is-visible .octo-arms circle, html:not(.js) .octo-arms circle { opacity: 1; }
-/* when one arm is active, dim the rest */
-.octo[data-active] .octo-arms path:not(.on) { opacity: 0.25; }
-.octo[data-active] .octo-arms circle:not(.on) { opacity: 0.25; }
+.octo-arms circle { fill: url(#arm-grad); opacity: 0; transition: opacity 0.2s ease, r 0.25s ease; }
+.octo.open .octo-arms path { stroke-dashoffset: 0; transition: stroke-dashoffset 0.8s ease var(--d), opacity 0.25s ease, stroke-width 0.25s ease; }
+.octo.open .octo-arms circle { opacity: 1; transition: opacity 0.3s ease calc(var(--d) + 0.6s), r 0.25s ease; }
+.octo[data-active] .octo-arms path:not(.on),
+.octo[data-active] .octo-arms circle:not(.on) { opacity: 0.22; }
 .octo-arms path.on { stroke-width: 5; }
 .octo-arms circle.on { r: 8; }
 
@@ -237,12 +238,21 @@ sup { font-size: 0.6em; color: var(--muted); margin-left: 1px; }
   box-shadow: 0 30px 60px -30px color-mix(in oklab, var(--c2), transparent 30%),
               0 0 0 10px color-mix(in oklab, var(--c1), transparent 85%);
   text-align: center;
+  cursor: pointer;
+  outline: none;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
 }
-.hub [hidden] { display: none !important; }
+.octo.open .hub {
+  transform: translate(-50%, -50%) scale(1.03);
+  box-shadow: 0 30px 60px -30px color-mix(in oklab, var(--c2), transparent 20%),
+              0 0 0 16px color-mix(in oklab, var(--c1), transparent 78%);
+}
+.hub:focus-visible { box-shadow: 0 0 0 3px var(--ink); }
 .hub-default { display: flex; flex-direction: column; align-items: center; gap: 6px; }
 .hub-default strong { font-size: clamp(34px, 3.6vw, 46px); line-height: 1; padding: 0 0.1em 0.08em; }
 .hub-default span { font-size: 16px; color: var(--ink-2); }
-.hub-hint { margin-top: 6px; font-size: 13px; color: var(--muted); }
+.hub-hint { margin-top: 6px; font-size: 13px; color: var(--muted); transition: opacity 0.3s ease; }
+.octo.open .hub-hint { opacity: 0; }
 .hub-wave { display: flex; gap: 4px; align-items: center; height: 26px; margin-bottom: 4px; }
 .hub-wave i {
   width: 4px;
@@ -255,40 +265,40 @@ sup { font-size: 0.6em; color: var(--muted); margin-left: 1px; }
 .hub-wave i:nth-child(3n) { animation-delay: -0.7s; }
 @keyframes hubwave { 0%, 100% { transform: scaleY(0.35); } 50% { transform: scaleY(1); } }
 
-.hub-detail { text-align: left; animation: hubin 0.25s ease; }
-.hub-detail h4 { margin: 0 0 10px; font-size: 19px; line-height: 1.25; letter-spacing: -0.01em; }
-.hub-detail ul { margin: 0; padding-left: 18px; font-size: 15px; line-height: 1.45; color: var(--ink-2); }
-.hub-detail li { margin: 6px 0; }
-.hub-detail li::marker { color: color-mix(in oklab, var(--c2), #1e0e36 30%); }
-@keyframes hubin { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
-
 /* arm labels */
 .arms { list-style: none; margin: 0; padding: 0; }
-.arm { position: absolute; transform: translateY(-50%); max-width: 23%; }
-.arm-l { text-align: right; }
-.arm button {
-  font: 600 15px/1.3 var(--font);
-  color: var(--ink);
-  text-align: inherit;
+.arm {
+  position: absolute;
+  max-width: 23%;
+  transform: translateY(-50%) scale(0.92);
+  opacity: 0;
+  transition: opacity 0.2s ease, transform 0.25s ease;
+}
+.arm-l { text-align: right; transform-origin: right center; }
+.arm-r { transform-origin: left center; }
+.octo.open .arm {
+  opacity: 1;
+  transform: translateY(-50%) scale(1);
+  transition: opacity 0.35s ease calc(var(--d) + 0.45s), transform 0.35s ease calc(var(--d) + 0.45s);
+}
+.arm-label {
+  display: inline-block;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.3;
   padding: 10px 16px;
   border-radius: 18px;
   border: 1px solid rgba(23, 23, 23, 0.12);
-  background: rgba(255, 255, 255, 0.85);
-  cursor: pointer;
-  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+  background: rgba(255, 255, 255, 0.9);
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease, opacity 0.2s ease, transform 0.2s ease;
 }
-.arm button:hover, .arm button:focus-visible, .arm.on button {
-  background: var(--ink);
-  color: var(--bg);
-  border-color: var(--ink);
-}
-.arm-l.on button { transform: translateX(-4px); }
-.arm-r.on button { transform: translateX(4px); }
-.arm-detail { display: none; }
+.octo[data-active] .arm:not(.on) .arm-label { opacity: 0.45; }
+.arm.on .arm-label { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.arm-l.on .arm-label { transform: translateX(-6px); }
+.arm-r.on .arm-label { transform: translateX(6px); }
 
 @media (prefers-reduced-motion: reduce) {
-  .octo-arms path { transition: none; stroke-dashoffset: 0; }
-  .octo-arms circle { transition: none; opacity: 1; }
+  .octo-arms path, .octo-arms circle, .arm, .hub { transition: none !important; }
   .hub-wave i { animation: none; }
 }
 
@@ -642,21 +652,13 @@ sup { font-size: 0.6em; color: var(--muted); margin-left: 1px; }
   .hero { padding: 72px 16px 0; }
   .orb-1 { width: 340px; height: 340px; right: -140px; top: 0; }
   .orb-2 { right: 40px; top: 360px; width: 220px; height: 220px; }
-  /* phones: hub on top, arms become a tap-to-expand list */
+  /* phones: hub on top, the seven points listed below it */
   .octo { aspect-ratio: auto; margin-top: 56px; }
   .octo-arms { display: none; }
-  .hub { position: static; transform: none; width: auto; min-height: 0; margin-bottom: 18px; }
-  .hub-detail { display: none !important; }
+  .hub { position: static; transform: none !important; width: auto; min-height: 0; margin-bottom: 18px; cursor: default; }
   .hub-hint { display: none; }
-  .arm, .arm-l, .arm-r { position: static !important; transform: none; max-width: none; text-align: left; margin-bottom: 8px; }
-  .arm button { width: 100%; text-align: left; padding: 14px 44px 14px 16px; position: relative; }
-  .arm button::after { content: "+"; position: absolute; right: 16px; top: 50%; transform: translateY(-50%); font-size: 20px; font-weight: 400; }
-  .arm.open button::after { content: "–"; }
-  .arm-l.on button, .arm-r.on button { transform: none; }
-  .arm.open .arm-detail { display: block; padding: 10px 6px 6px 16px; }
-  .arm-detail h4 { display: none; }
-  .arm-detail ul { margin: 0; padding-left: 18px; font-size: 15px; color: var(--ink-2); }
-  .arm-detail li { margin: 6px 0; }
+  .arm, .arm-l, .arm-r { position: static !important; opacity: 1; transform: none !important; max-width: none; text-align: left; margin-bottom: 8px; }
+  .arm-label { display: block; padding: 14px 16px; }
   .belief { padding: 80px 16px; }
   .stats { margin: 0 8px; padding: 72px 0; border-radius: 26px; }
   .stat { grid-template-columns: 1fr; gap: 12px; padding: 32px 0; }

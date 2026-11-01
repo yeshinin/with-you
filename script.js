@@ -76,44 +76,52 @@ if (carousel) {
   carousel.addEventListener("pointercancel", endDrag);
 }
 
-// Octopus diagram: hovering/focusing an arm shows its details in the hub;
-// on phones the arms are a tap-to-expand list instead
+// Octopus diagram: hovering (or tapping) the hub grows the arms out; while
+// they're out, the arm nearest the cursor is highlighted
 const octo = document.querySelector(".octo");
 
 if (octo) {
+  const hub = octo.querySelector(".hub");
+  const svg = octo.querySelector(".octo-arms");
   const arms = [...octo.querySelectorAll(".arm")];
   const marks = [...octo.querySelectorAll(".octo-arms [data-arm]")];
-  const hubDefault = octo.querySelector(".hub-default");
-  const hubDetail = octo.querySelector(".hub-detail");
-  const isPhone = () => window.matchMedia("(max-width: 720px)").matches;
+  const tips = [...svg.querySelectorAll("circle")].map((c) => ({
+    id: c.dataset.arm,
+    angle: Math.atan2(c.cy.baseVal.value - 270, c.cx.baseVal.value - 500),
+  }));
 
-  const show = (id) => {
+  const focusArm = (id) => {
     if (id) octo.dataset.active = id;
     else delete octo.dataset.active;
     arms.forEach((arm) => arm.classList.toggle("on", arm.dataset.arm === id));
     marks.forEach((mark) => mark.classList.toggle("on", mark.dataset.arm === id));
-    const active = arms.find((arm) => arm.dataset.arm === id);
-    hubDetail.innerHTML = active ? active.querySelector(".arm-detail").innerHTML : "";
-    hubDetail.hidden = !active;
-    hubDefault.hidden = Boolean(active);
   };
 
-  arms.forEach((arm) => {
-    const button = arm.querySelector("button");
-    button.addEventListener("mouseenter", () => !isPhone() && show(arm.dataset.arm));
-    button.addEventListener("focus", () => !isPhone() && show(arm.dataset.arm));
-    button.addEventListener("click", () => {
-      if (isPhone()) {
-        const open = arm.classList.toggle("open");
-        button.setAttribute("aria-expanded", String(open));
-      } else {
-        show(arm.dataset.arm);
-      }
-    });
-  });
+  const setOpen = (open) => {
+    octo.classList.toggle("open", open);
+    hub.setAttribute("aria-expanded", String(open));
+    if (!open) focusArm(null);
+  };
 
-  octo.addEventListener("mouseleave", () => show(null));
-  octo.addEventListener("focusout", (e) => {
-    if (!octo.contains(e.relatedTarget)) show(null);
+  hub.addEventListener("mouseenter", () => setOpen(true));
+  hub.addEventListener("focus", () => setOpen(true));
+  hub.addEventListener("click", () => setOpen(!octo.classList.contains("open")));
+  hub.addEventListener("blur", () => setOpen(false));
+  octo.addEventListener("mouseleave", () => setOpen(false));
+
+  octo.addEventListener("mousemove", (e) => {
+    if (!octo.classList.contains("open")) return;
+    const box = hub.getBoundingClientRect();
+    const overHub = e.clientX > box.left && e.clientX < box.right && e.clientY > box.top && e.clientY < box.bottom;
+    if (overHub) return focusArm(null);
+
+    // convert the cursor into the SVG's 1000×540 space and pick the closest arm by angle
+    const r = svg.getBoundingClientRect();
+    const x = ((e.clientX - r.left) / r.width) * 1000;
+    const y = ((e.clientY - r.top) / r.height) * 540;
+    const angle = Math.atan2(y - 270, x - 500);
+    const gap = (a) => Math.abs(Math.atan2(Math.sin(a - angle), Math.cos(a - angle)));
+    const nearest = tips.reduce((best, tip) => (gap(tip.angle) < gap(best.angle) ? tip : best));
+    focusArm(nearest.id);
   });
 }
