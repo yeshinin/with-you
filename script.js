@@ -76,25 +76,71 @@ if (carousel) {
   carousel.addEventListener("pointercancel", endDrag);
 }
 
+// Soft chime, synthesised (no audio file). Browsers only allow sound after the
+// visitor has clicked, tapped or pressed a key, so we unlock on the first one.
+let audio = null;
+const unlockAudio = () => {
+  const Ctx = window.AudioContext || window.webkitAudioContext;
+  if (!Ctx) return;
+  audio = audio || new Ctx();
+  if (audio.state === "suspended") audio.resume();
+};
+["pointerdown", "keydown", "touchstart"].forEach((type) =>
+  window.addEventListener(type, unlockAudio, { passive: true })
+);
+
+// one gentle note per arm (a pentatonic scale, so any order sounds pleasant)
+const NOTES = [523.25, 587.33, 659.25, 783.99, 880.0, 1046.5, 1174.66];
+const chime = (index) => {
+  if (!audio || audio.state !== "running") return;
+  const now = audio.currentTime;
+  const out = audio.createGain();
+  out.gain.setValueAtTime(0.0001, now);
+  out.gain.exponentialRampToValueAtTime(0.08, now + 0.01);
+  out.gain.exponentialRampToValueAtTime(0.0001, now + 0.9);
+  out.connect(audio.destination);
+  // fundamental plus a quiet bell-like overtone
+  [[1, 1], [2.76, 0.25]].forEach(([ratio, level]) => {
+    const osc = audio.createOscillator();
+    const gain = audio.createGain();
+    osc.type = "sine";
+    osc.frequency.value = NOTES[index] * ratio;
+    gain.gain.value = level;
+    osc.connect(gain).connect(out);
+    osc.start(now);
+    osc.stop(now + 0.95);
+  });
+};
+
 // Octopus diagram: hovering (or tapping) the hub grows the arms out; while
-// they're out, the arm nearest the cursor is highlighted
+// they're out, the arm nearest the cursor is focused, chimes, and sprouts
+// its sub-points. On phones the arms are a tap-to-expand list instead.
 const octo = document.querySelector(".octo");
 
 if (octo) {
   const hub = octo.querySelector(".hub");
   const svg = octo.querySelector(".octo-arms");
   const arms = [...octo.querySelectorAll(".arm")];
-  const marks = [...octo.querySelectorAll(".octo-arms [data-arm]")];
+  const marks = [...octo.querySelectorAll(".octo-arms > [data-arm], .octo-arms .sub, .subs")];
+  const isPhone = () => window.matchMedia("(max-width: 720px)").matches;
   const tips = [...svg.querySelectorAll("circle")].map((c) => ({
     id: c.dataset.arm,
     angle: Math.atan2(c.cy.baseVal.value - 270, c.cx.baseVal.value - 500),
   }));
 
   const focusArm = (id) => {
-    if (id) octo.dataset.active = id;
-    else delete octo.dataset.active;
-    arms.forEach((arm) => arm.classList.toggle("on", arm.dataset.arm === id));
-    marks.forEach((mark) => mark.classList.toggle("on", mark.dataset.arm === id));
+    if (id === (octo.dataset.active || null)) return;
+    const arm = arms.find((a) => a.dataset.arm === id);
+    if (id) {
+      octo.dataset.active = id;
+      octo.dataset.side = arm.classList.contains("arm-l") ? "l" : "r";
+      chime(Number(id) - 1);
+    } else {
+      delete octo.dataset.active;
+      delete octo.dataset.side;
+    }
+    arms.forEach((a) => a.classList.toggle("on", a.dataset.arm === id));
+    marks.forEach((m) => m.classList.toggle("on", m.dataset.arm === id));
   };
 
   const setOpen = (open) => {
@@ -103,14 +149,19 @@ if (octo) {
     if (!open) focusArm(null);
   };
 
-  hub.addEventListener("mouseenter", () => setOpen(true));
-  hub.addEventListener("focus", () => setOpen(true));
-  hub.addEventListener("click", () => setOpen(!octo.classList.contains("open")));
-  hub.addEventListener("blur", () => setOpen(false));
+  hub.addEventListener("mouseenter", () => !isPhone() && setOpen(true));
+  hub.addEventListener("focus", () => !isPhone() && setOpen(true));
+  hub.addEventListener("click", () => !isPhone() && setOpen(!octo.classList.contains("open")));
   octo.addEventListener("mouseleave", () => setOpen(false));
+  octo.addEventListener("focusout", (e) => {
+    if (!octo.contains(e.relatedTarget)) setOpen(false);
+  });
 
   octo.addEventListener("mousemove", (e) => {
-    if (!octo.classList.contains("open")) return;
+    if (!octo.classList.contains("open") || isPhone()) return;
+    // reading a sub-point or the focused label keeps the focus where it is
+    if (e.target.closest(".subs.on, .arm.on")) return;
+
     const box = hub.getBoundingClientRect();
     const overHub = e.clientX > box.left && e.clientX < box.right && e.clientY > box.top && e.clientY < box.bottom;
     if (overHub) return focusArm(null);
@@ -123,5 +174,20 @@ if (octo) {
     const gap = (a) => Math.abs(Math.atan2(Math.sin(a - angle), Math.cos(a - angle)));
     const nearest = tips.reduce((best, tip) => (gap(tip.angle) < gap(best.angle) ? tip : best));
     focusArm(nearest.id);
+  });
+
+  // keyboard: tabbing onto a label focuses that arm; phones: tap to expand
+  arms.forEach((arm) => {
+    const button = arm.querySelector(".arm-label");
+    button.addEventListener("focus", () => {
+      if (isPhone()) return;
+      setOpen(true);
+      focusArm(arm.dataset.arm);
+    });
+    button.addEventListener("click", () => {
+      if (!isPhone()) return focusArm(arm.dataset.arm);
+      const open = arm.classList.toggle("open");
+      button.setAttribute("aria-expanded", String(open));
+    });
   });
 }
