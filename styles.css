@@ -72,7 +72,6 @@ sup { font-size: 0.6em; color: var(--muted); margin-left: 1px; }
   color: var(--muted);
   margin: 0 0 18px;
 }
-.eyebrow-light { color: rgba(255, 253, 243, 0.6); }
 
 .section-lede { color: var(--ink-2); max-width: 60ch; margin: 18px 0 0; }
 
@@ -228,14 +227,17 @@ sup { font-size: 0.6em; color: var(--muted); margin-left: 1px; }
 
 /* ---------- Stats ---------- */
 .stats {
-  background: var(--ink);
-  color: var(--bg);
+  /* soft wash of the changing palette instead of a dark band */
+  background: linear-gradient(135deg,
+    color-mix(in oklab, var(--c2), var(--bg) 80%),
+    color-mix(in oklab, var(--c1), var(--bg) 84%) 50%,
+    color-mix(in oklab, var(--c3), var(--bg) 82%));
+  color: var(--ink);
   padding: 100px 0;
   border-radius: 36px;
   margin: 0 16px;
 }
-.stats h2 { color: var(--bg); }
-.stats sup { color: rgba(255, 253, 243, 0.45); }
+.stats h2 { max-width: 26ch; }
 
 .stat-list {
   list-style: none;
@@ -248,20 +250,24 @@ sup { font-size: 0.6em; color: var(--muted); margin-left: 1px; }
   gap: 32px;
   align-items: baseline;
   padding: 40px 0;
-  border-top: 1px dotted rgba(255, 253, 243, 0.25);
+  border-top: 1px dotted var(--line);
 }
 .stat-num {
   font-size: clamp(48px, 7vw, 88px);
   font-weight: 800;
   letter-spacing: -0.04em;
   line-height: 1;
-  background: linear-gradient(120deg, var(--c1), var(--c2) 50%, var(--c3));
+  /* deeper versions of the palette so numbers stay readable on the light wash */
+  background: linear-gradient(120deg,
+    color-mix(in oklab, var(--c2), #1e0e36 45%),
+    color-mix(in oklab, var(--c1), #3a0c26 40%) 50%,
+    color-mix(in oklab, var(--c3), #0c2422 50%));
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 }
-.stat-label { font-size: clamp(19px, 2vw, 23px); color: rgba(255, 253, 243, 0.8); line-height: 1.45; max-width: 34ch; }
-.stat-accent .stat-label { color: var(--bg); font-weight: 600; }
+.stat-label { font-size: clamp(19px, 2vw, 23px); color: var(--ink-2); line-height: 1.45; max-width: 34ch; }
+.stat-accent .stat-label { color: var(--ink); font-weight: 600; }
 
 /* ---------- Scroll reveal (only when JS is on) ---------- */
 .js .reveal {
