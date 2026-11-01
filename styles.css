@@ -186,6 +186,15 @@ sup { font-size: 0.6em; color: var(--muted); margin-left: 1px; }
   max-width: 40ch;
   margin: 28px 0 36px;
 }
+.lede-note {
+  max-width: 52ch;
+  margin: -14px 0 34px;
+  padding-left: 14px;
+  border-left: 3px solid var(--hub-blue);
+  font-size: 17px;
+  line-height: 1.55;
+  color: var(--ink-2);
+}
 .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
 
 .orb {
