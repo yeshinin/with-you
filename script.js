@@ -110,8 +110,17 @@ if (octo) {
   hub.addEventListener("blur", () => setOpen(false));
   octo.addEventListener("mouseleave", () => setOpen(false));
 
+  // phones have no hover: tap a label to open or close its sub-points
+  arms.forEach((arm) =>
+    arm.addEventListener("click", () => {
+      if (window.matchMedia("(max-width: 720px)").matches) arm.classList.toggle("open");
+    })
+  );
+
   octo.addEventListener("mousemove", (e) => {
     if (!octo.classList.contains("open")) return;
+    // reading the open label keeps the focus where it is
+    if (e.target.closest(".arm.on")) return;
     const box = hub.getBoundingClientRect();
     const overHub = e.clientX > box.left && e.clientX < box.right && e.clientY > box.top && e.clientY < box.bottom;
     if (overHub) return focusArm(null);
