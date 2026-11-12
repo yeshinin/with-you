@@ -175,7 +175,8 @@ sup { font-size: 0.6em; color: var(--muted); margin-left: 1px; }
 }
 .hero h1 {
   font-size: clamp(36px, 5.6vw, 72px);
-  max-width: 18ch;
+  max-width: 23ch;
+  text-wrap: balance;
   font-weight: 800;
   letter-spacing: -0.035em;
   line-height: 1.02;
@@ -196,7 +197,10 @@ sup { font-size: 0.6em; color: var(--muted); margin-left: 1px; }
   line-height: 1.55;
   color: var(--ink-2);
 }
-.tagline { max-width: 44ch; margin: -14px 0 30px; font-size: clamp(18px, 1.7vw, 20px); font-weight: 600; color: var(--ink); }
+/* the home hero uses about three quarters of the width, leaving room for the glow */
+.hero .lede { max-width: 54ch; }
+.hero .lede-note { max-width: 70ch; }
+.tagline { max-width: 60ch; margin: -14px 0 30px; font-size: clamp(18px, 1.7vw, 20px); font-weight: 600; color: var(--ink); }
 .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
 .hero-link { margin-left: 6px; font-size: 16px; color: var(--ink-2); text-underline-offset: 4px; }
 .hero-link:hover { color: var(--ink); }
