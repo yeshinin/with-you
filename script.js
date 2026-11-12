@@ -148,3 +148,14 @@ if (header && menuButton) {
   menuButton.addEventListener("click", () => setMenu(!header.classList.contains("menu-open")));
   header.querySelectorAll(".nav-links a").forEach((link) => link.addEventListener("click", () => setMenu(false)));
 }
+
+// What's different: on phones the last rows sit behind "See more"
+const diffMore = document.querySelector(".diff-more");
+if (diffMore) {
+  diffMore.addEventListener("click", () => {
+    const card = diffMore.closest(".diff-card");
+    const open = card.classList.toggle("expanded");
+    diffMore.setAttribute("aria-expanded", String(open));
+    diffMore.textContent = open ? "See less" : "See more";
+  });
+}

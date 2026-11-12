@@ -180,7 +180,7 @@ sup { font-size: 0.6em; color: var(--muted); margin-left: 1px; }
   letter-spacing: -0.035em;
   line-height: 1.02;
 }
-.hero h1 .soft { color: var(--coral); }
+.hero h1 .soft { display: block; color: var(--coral); }
 .lede {
   font-size: clamp(19px, 2vw, 23px);
   color: var(--ink-2);
@@ -199,6 +199,30 @@ sup { font-size: 0.6em; color: var(--muted); margin-left: 1px; }
 .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
 .hero-link { margin-left: 6px; font-size: 16px; color: var(--ink-2); text-underline-offset: 4px; }
 .hero-link:hover { color: var(--ink); }
+
+/* ---------- What's different (floating card in the hero) ---------- */
+.diff-card {
+  position: relative;
+  z-index: 2;
+  max-width: var(--max);
+  margin: 88px auto 0;
+  padding: 44px 48px 36px;
+  border-radius: calc(var(--radius) + 6px);
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(23, 23, 23, 0.07);
+  box-shadow: 0 40px 80px -40px rgba(31, 63, 143, 0.35), 0 12px 28px -18px rgba(23, 23, 23, 0.18);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+.diff-card h2 { max-width: none; text-wrap: balance; }
+.diff-table { width: 100%; margin-top: 28px; border-collapse: collapse; font-size: 17px; line-height: 1.5; }
+.diff-table th { padding: 0 20px 12px 0; text-align: left; font-size: 13px; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; color: var(--muted); }
+.diff-table td { padding: 16px 20px 16px 0; vertical-align: top; border-top: 1px solid var(--line); }
+.diff-table .diff-tool { width: 36%; color: var(--muted); }
+.diff-table .diff-ours { color: var(--ink); }
+.diff-table td:last-child, .diff-table th:last-child { padding-right: 0; }
+.diff-more { display: none; }
+.diff-close { margin: 26px 0 0; padding-top: 22px; border-top: 1px solid var(--line); font-size: 19px; font-weight: 600; color: var(--ink); }
 
 .orb {
   position: absolute;
@@ -864,6 +888,17 @@ sup { font-size: 0.6em; color: var(--muted); margin-left: 1px; }
   .arm.on:not(.open) .arm-label { background: rgba(255, 255, 255, 0.9); color: var(--ink); border-color: rgba(23, 23, 23, 0.12); }
   .belief { padding: 80px 16px; }
   .hero-link { margin-left: 0; }
+  /* What's different: one small card per row, first four shown until "See more" */
+  .diff-card { margin-top: 56px; padding: 28px 18px 24px; }
+  .diff-table thead { display: none; }
+  .diff-table, .diff-table tbody, .diff-table tr, .diff-table td { display: block; width: auto; }
+  .diff-table { margin-top: 20px; font-size: 16px; }
+  .diff-table tr { margin-bottom: 10px; padding: 14px 16px; border-radius: 16px; background: var(--bg-soft); }
+  .diff-table td, .diff-table .diff-tool { width: auto; padding: 0; border: 0; }
+  .diff-table .diff-tool { margin-bottom: 6px; font-size: 15px; text-decoration: line-through; text-decoration-color: rgba(111, 106, 96, 0.55); }
+  .diff-card:not(.expanded) .diff-table tbody tr:nth-child(n+5) { display: none; }
+  .diff-more { display: inline-block; margin-top: 4px; padding: 10px 18px; border: 1px solid rgba(23, 23, 23, 0.25); border-radius: 999px; background: transparent; font: inherit; font-size: 15px; font-weight: 600; color: var(--ink); cursor: pointer; }
+  .diff-close { margin-top: 20px; padding-top: 18px; font-size: 17px; }
   /* comparison table becomes one card per row */
   .versus-wrap { background: none; border: 0; overflow: visible; }
   .versus-table thead { display: none; }
