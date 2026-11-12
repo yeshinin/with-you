@@ -88,26 +88,46 @@
         </div>
       </div>
 
-      <!-- What's different: floating card that overlaps the bottom of the hero opening -->
+      <!-- What's different: floating billboard card that overlaps the bottom of the hero opening.
+           One example shows at a time and rotates on its own; the dots jump to one. -->
       <div class="diff-card" id="different">
         <p class="eyebrow">What’s different</p>
         <h2>Most tools tell you. With You helps you do it.</h2>
-        <table class="diff-table">
-          <thead>
-            <tr><th scope="col">Most tools say</th><th scope="col">With You</th></tr>
-          </thead>
-          <tbody>
-            <tr><td class="diff-tool" data-label="Most tools say">“Your medicine is due.”</td><td class="diff-ours" data-label="With You">Helps you take the next step, even when you have little attention or energy left.</td></tr>
-            <tr><td class="diff-tool" data-label="Most tools say">“Here are the instructions.”</td><td class="diff-ours" data-label="With You">Walks you through each task, so you never have to search or interpret a document.</td></tr>
-            <tr><td class="diff-tool" data-label="Most tools say">“Watch this video on drain care.”</td><td class="diff-ours" data-label="With You">Guides you step by step through care tasks you’ve never done before, made for your situation. If you’re still unsure, a person can show you.</td></tr>
-            <tr><td class="diff-tool" data-label="Most tools say">“Log your symptoms.”</td><td class="diff-ours" data-label="With You">Just tell it how you feel. It keeps the record.</td></tr>
-            <tr><td class="diff-tool" data-label="Most tools say">“Write down your questions for your visit.”</td><td class="diff-ours" data-label="With You">Turns what you’ve told it into the questions and concerns to raise, so nothing depends on your memory.</td></tr>
-            <tr><td class="diff-tool" data-label="Most tools say">“Let us know if you need help.”</td><td class="diff-ours" data-label="With You">Asks early about what might get in the way, like a ride, a refill, or the cost, and brings it to the right person before care is missed.</td></tr>
-            <tr><td class="diff-tool" data-label="Most tools say">“Call us if you have questions.”</td><td class="diff-ours" data-label="With You">Tell it what’s wrong, and it gets to the right person.</td></tr>
-          </tbody>
-        </table>
-        <button class="diff-more" type="button" aria-expanded="false">See more</button>
-        <p class="diff-close">Every interaction is designed to ask less of you when you have less to give.</p>
+        <ol class="billboard" aria-roledescription="carousel" aria-label="What most tools say, and what With You does">
+          <li class="bb-slide is-on">
+            <div class="bb-tool"><span class="bb-label">Most tools say</span><p><span class="bb-strike">“Your medicine is due.”</span></p></div>
+            <span class="bb-arrow" aria-hidden="true">→</span>
+            <div class="bb-ours"><span class="bb-label">With You</span><p>Helps you take the next step, even when you have little attention or energy left.</p></div>
+          </li>
+          <li class="bb-slide" aria-hidden="true">
+            <div class="bb-tool"><span class="bb-label">Most tools say</span><p><span class="bb-strike">“Here are the instructions.”</span></p></div>
+            <span class="bb-arrow" aria-hidden="true">→</span>
+            <div class="bb-ours"><span class="bb-label">With You</span><p>Walks you through each task, so you don’t have to search or interpret a booklet.</p></div>
+          </li>
+          <li class="bb-slide" aria-hidden="true">
+            <div class="bb-tool"><span class="bb-label">Most tools say</span><p><span class="bb-strike">“Log your symptoms.”</span></p></div>
+            <span class="bb-arrow" aria-hidden="true">→</span>
+            <div class="bb-ours"><span class="bb-label">With You</span><p>Just tell it how you feel. It keeps the record.</p></div>
+          </li>
+          <li class="bb-slide" aria-hidden="true">
+            <div class="bb-tool"><span class="bb-label">Most tools say</span><p><span class="bb-strike">“Unsure what to even ask when there’s so much.”</span></p></div>
+            <span class="bb-arrow" aria-hidden="true">→</span>
+            <div class="bb-ours"><span class="bb-label">With You</span><p>Turns what you’ve told it into the questions and concerns to raise, so nothing depends on your memory.</p></div>
+          </li>
+          <li class="bb-slide" aria-hidden="true">
+            <div class="bb-tool"><span class="bb-label">Most tools say</span><p><span class="bb-strike">“Let us know if you need help.”</span></p></div>
+            <span class="bb-arrow" aria-hidden="true">→</span>
+            <div class="bb-ours"><span class="bb-label">With You</span><p>Asks early about what might get in the way proactively, like a ride, a refill, or the cost, and brings it to the right person before care is missed.</p></div>
+          </li>
+        </ol>
+        <div class="bb-dots">
+          <button type="button" class="bb-dot is-on" aria-label="Show example 1 of 5" aria-current="true"><span></span></button>
+          <button type="button" class="bb-dot" aria-label="Show example 2 of 5"><span></span></button>
+          <button type="button" class="bb-dot" aria-label="Show example 3 of 5"><span></span></button>
+          <button type="button" class="bb-dot" aria-label="Show example 4 of 5"><span></span></button>
+          <button type="button" class="bb-dot" aria-label="Show example 5 of 5"><span></span></button>
+        </div>
+        <p class="diff-close">Rooted in lived caregiving experience. Shaped by hundreds of patient and caregiver stories.</p>
       </div>
 
       <!-- Octopus diagram: hover the With You hub and six kinds of support grow out as arms;
@@ -296,56 +316,6 @@
           Peer stories are always labelled as experience, not medical advice.
         </p>
       </div>
-    </section>
-
-    <!-- ============ WHY NOT A BOOKLET ============ -->
-    <section class="versus container">
-      <h2>Why not a booklet or a follow-up call?</h2>
-      <div class="versus-wrap">
-        <table class="versus-table">
-          <thead>
-            <tr>
-              <td></td>
-              <th scope="col">Discharge booklet</th>
-              <th scope="col">Follow-up call</th>
-              <th scope="col" class="ours">With You</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <th scope="row">Personalized to you</th>
-              <td data-label="Discharge booklet">Same for everyone</td>
-              <td data-label="Follow-up call">Partly</td>
-              <td data-label="With You">Built from your care team’s plan</td>
-            </tr>
-            <tr>
-              <th scope="row">Timing</th>
-              <td data-label="Discharge booklet">Everything at once</td>
-              <td data-label="Follow-up call">Once or twice</td>
-              <td data-label="With You">Day by day, when each task is due</td>
-            </tr>
-            <tr>
-              <th scope="row">Format</th>
-              <td data-label="Discharge booklet">Dense text</td>
-              <td data-label="Follow-up call">Phone only</td>
-              <td data-label="With You">Voice, visuals, or text, in your language</td>
-            </tr>
-            <tr>
-              <th scope="row">Catches practical problems</th>
-              <td data-label="Discharge booklet">No</td>
-              <td data-label="Follow-up call">Sometimes</td>
-              <td data-label="With You">Asks early, routes to an owner, confirms it’s solved</td>
-            </tr>
-            <tr>
-              <th scope="row">Questions answered</th>
-              <td data-label="Discharge booklet">On your own</td>
-              <td data-label="Follow-up call">During the call</td>
-              <td data-label="With You">Prepared before visits, checked after</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <p class="versus-note">With You never diagnoses. Every clinical question goes to your care team.</p>
     </section>
 
     <!-- ============ CLOSING STATEMENT ============ -->

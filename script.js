@@ -149,13 +149,39 @@ if (header && menuButton) {
   header.querySelectorAll(".nav-links a").forEach((link) => link.addEventListener("click", () => setMenu(false)));
 }
 
-// What's different: on phones the last rows sit behind "See more"
-const diffMore = document.querySelector(".diff-more");
-if (diffMore) {
-  diffMore.addEventListener("click", () => {
-    const card = diffMore.closest(".diff-card");
-    const open = card.classList.toggle("expanded");
-    diffMore.setAttribute("aria-expanded", String(open));
-    diffMore.textContent = open ? "See less" : "See more";
+// What's different billboard: one example at a time, rotating on its own.
+// The active dot's progress bar times each example; when it fills, the next one shows.
+// Hovering or focusing pauses it, and reduced motion keeps it still.
+const billboard = document.querySelector(".billboard");
+if (billboard) {
+  const card = billboard.closest(".diff-card");
+  const slides = [...billboard.querySelectorAll(".bb-slide")];
+  const dots = [...card.querySelectorAll(".bb-dot")];
+  let current = 0;
+
+  const show = (i) => {
+    current = (i + slides.length) % slides.length;
+    slides.forEach((s, n) => {
+      s.classList.toggle("is-on", n === current);
+      s.toggleAttribute("aria-hidden", n !== current);
+    });
+    dots.forEach((d) => {
+      d.classList.remove("is-on");
+      d.removeAttribute("aria-current");
+    });
+    void dots[current].offsetWidth; // restart the progress bar
+    dots[current].classList.add("is-on");
+    dots[current].setAttribute("aria-current", "true");
+  };
+
+  dots.forEach((d, n) => {
+    d.addEventListener("click", () => show(n));
+    d.addEventListener("animationend", () => show(current + 1));
   });
+  const pause = () => card.classList.add("billboard-paused");
+  const resume = () => card.classList.remove("billboard-paused");
+  billboard.addEventListener("mouseenter", pause);
+  billboard.addEventListener("mouseleave", resume);
+  card.addEventListener("focusin", pause);
+  card.addEventListener("focusout", resume);
 }
