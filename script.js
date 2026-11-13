@@ -185,3 +185,65 @@ if (billboard) {
   card.addEventListener("focusin", pause);
   card.addEventListener("focusout", resume);
 }
+
+// Partners page charts: bars grow in and big numbers count up, once, when the
+// chart scrolls into view. The final values are already in the HTML, so the
+// charts read correctly if this never runs or motion is reduced.
+const charts = document.querySelectorAll("[data-chart]");
+const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+if (charts.length && "IntersectionObserver" in window && !reduceMotion) {
+  document.documentElement.classList.add("charts-anim");
+  const counters = document.querySelectorAll("[data-chart] [data-to]");
+  counters.forEach((el) => (el.textContent = "0"));
+
+  const countUp = (el) => {
+    const to = parseFloat(el.dataset.to);
+    const start = performance.now();
+    const tick = (now) => {
+      const p = Math.min(1, (now - start) / 1300);
+      el.textContent = Math.round(to * (1 - Math.pow(1 - p, 3))).toLocaleString("en-US");
+      if (p < 1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  };
+
+  const chartObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add("is-in");
+        entry.target.querySelectorAll("[data-to]").forEach(countUp);
+        chartObserver.unobserve(entry.target);
+      });
+    },
+    { threshold: 0.4 }
+  );
+  charts.forEach((c) => chartObserver.observe(c));
+}
+
+// Partners page impact calculator: outputs update as the inputs change
+const calc = document.querySelector("[data-calc]");
+
+if (calc) {
+  const read = (name) => {
+    const v = parseFloat(calc.elements[name].value.replace(/[^0-9.]/g, ""));
+    return Number.isFinite(v) ? v : 0;
+  };
+  const update = () => {
+    const avoided = read("discharges") * (read("rate") / 100) * (read("reduction") / 100);
+    const saved = avoided * read("cost");
+    calc.elements.avoided.value = (Math.round(avoided * 10) / 10).toLocaleString("en-US");
+    calc.elements.saved.value = "$" + Math.round(saved).toLocaleString("en-US");
+  };
+  calc.addEventListener("input", update);
+  calc.addEventListener("submit", (e) => e.preventDefault());
+  // tidy thousands separators once a field is left
+  calc.querySelectorAll("[data-commas]").forEach((input) =>
+    input.addEventListener("change", () => {
+      const v = read(input.name);
+      if (v) input.value = v.toLocaleString("en-US");
+    })
+  );
+  update();
+}

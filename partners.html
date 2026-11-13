@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>For health systems and partners · With You</title>
-  <meta name="description" content="How With You helps households carry out the discharge plan, and what a 90-day pilot would measure." />
+  <title>For health systems, ACOs, and health plans · With You</title>
+  <meta name="description" content="Discharge plans assume households can carry them out. Many can’t. How With You helps, where it pays, and what a focused 90-day pilot measures." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@1&family=Karla:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet" />
@@ -17,8 +17,8 @@
   <!-- link previews (LinkedIn, WhatsApp, iMessage, Slack, X …) -->
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="With You" />
-  <meta property="og:title" content="For health systems and partners · With You" />
-  <meta property="og:description" content="How With You helps households carry out the discharge plan, and what a 90-day pilot would measure." />
+  <meta property="og:title" content="For health systems, ACOs, and health plans · With You" />
+  <meta property="og:description" content="Discharge plans assume households can carry them out. Many can’t. How With You helps, where it pays, and what a focused 90-day pilot measures." />
   <meta property="og:url" content="https://yeshinin.github.io/with-you/partners.html" />
   <meta property="og:image" content="https://yeshinin.github.io/with-you/images/og-image.png" />
   <meta property="og:image:width" content="1200" />
@@ -50,82 +50,291 @@
   </header>
 
 
-  <main id="top" class="page-clip">
+  <main id="top" class="page-clip pp">
     <div class="orb orb-1" aria-hidden="true"></div>
 
-    <!-- ============ PARTNERS HERO ============ -->
+    <!-- ============ 1. HERO ============ -->
     <section class="p-hero container">
-      <p class="eyebrow">For health systems and partners</p>
-      <h1>Discharge transfers responsibility, not capability.</h1>
-      <p class="lede">The plan is usually right. What fails is whether the household can carry it out, and those failures come back as readmissions and ER visits.</p>
+      <p class="eyebrow">For health systems, ACOs, and health plans</p>
+      <h1>Discharge plans assume households can carry them out. <span class="soft">Many can’t, and you pay for it.</span></h1>
+      <p class="lede">With You builds guidance around what each household can realistically manage, their skills, energy, time, and resources, so patients and care partners can put the plan into practice, with no added work for your nurses.</p>
+      <a class="btn btn-dark btn-lg" href="mailto:yeshidpn@gmail.com?subject=With%20You%20pilot">Explore a focused pilot</a>
     </section>
 
-    <!-- ============ THE COST ============ -->
-    <section class="stats">
-      <div class="container">
-        <h2>The cost</h2>
-        <ol class="stat-list">
-          <li class="stat">
-            <span class="stat-num">$15,200</span>
-            <span class="stat-label">is the average cost of a hospital readmission.<sup>1</sup></span>
-          </li>
-          <li class="stat">
-            <span class="stat-num">1 in 5</span>
-            <span class="stat-label">patients have an adverse event after discharge.<sup>2</sup></span>
-          </li>
-          <li class="stat">
-            <span class="stat-num">40%</span>
-            <span class="stat-label">of post-discharge hospital returns are ER visits without admission.<sup>3</sup></span>
-          </li>
-        </ol>
-      </div>
-    </section>
-
-    <!-- ============ FIT ============ -->
+    <!-- ============ 2. THE SCALE OF THE NEED ============ -->
     <section class="p-block container">
-      <h2>How it fits your team</h2>
-      <ul class="safe-list fit-list">
-        <li><strong>No new dashboard</strong><span>Issues arrive where staff already work, with context gathered.</span></li>
-        <li><strong>Two-minute nurse approval</strong><span>A nurse approves the plan before discharge.</span></li>
-        <li><strong>Phased integration</strong><span>The pilot starts with a simple staff screen; EHR integration follows.</span></li>
+      <p class="eyebrow">The scale of the need</p>
+      <h2>Millions of patients go home each year to carry out a care plan. Billions are spent when that plan breaks down.</h2>
+      <ul class="pp-cards pp-cards-4">
+        <li class="pp-card">
+          <span class="pp-num">3.8 million</span>
+          <span class="pp-label">30-day adult readmissions a year.</span>
+          <a class="pp-src" href="#src-1">Source: HCUP Statistical Brief #278 (2018 data)</a>
+        </li>
+        <li class="pp-card">
+          <span class="pp-num">~$58 billion <span class="pp-est">est.</span></span>
+          <span class="pp-label">Their annual cost, at $15,200 each.</span>
+          <a class="pp-src" href="#src-1">Source: derived from HCUP Statistical Brief #278</a>
+        </li>
+        <li class="pp-card">
+          <span class="pp-num">40%</span>
+          <span class="pp-label">Of hospital returns after discharge are ER visits without admission.</span>
+          <a class="pp-src" href="#src-2">Source: Vashi et al., JAMA, 2013</a>
+        </li>
+        <li class="pp-card">
+          <span class="pp-num">22%</span>
+          <span class="pp-label">Of family caregivers have been trained for the medical tasks they do at home.</span>
+          <a class="pp-src" href="#src-3">Source: AARP &amp; NAC, Caregiving in the US 2025</a>
+        </li>
       </ul>
     </section>
 
-    <!-- ============ EVIDENCE ============ -->
+    <!-- ============ 3. THE GAP IS WIDENING ============ -->
+    <section class="p-block container">
+      <p class="eyebrow">The gap is widening</p>
+      <h2>The care load on households is growing. The capacity to carry it isn’t.</h2>
+
+      <div class="gap-grid">
+        <div class="gap-col">
+          <p class="gap-label">Demand is rising</p>
+
+          <!-- Charts: final values are written here; script.js only animates them in once -->
+          <figure class="chart" data-chart>
+            <figcaption class="chart-title">Family caregivers (millions)</figcaption>
+            <div class="chart-head">
+              <span class="chart-big"><span data-to="63">63</span> million</span>
+              <span class="chart-growth">+45% in 10 years</span>
+            </div>
+            <ul class="bars" aria-hidden="true">
+              <li style="--v: 0.690; --i: 0"><span class="bar-year">2015</span><span class="bar-track"><span class="bar"></span></span><span class="bar-val">43.5</span></li>
+              <li style="--v: 0.841; --i: 1"><span class="bar-year">2020</span><span class="bar-track"><span class="bar"></span></span><span class="bar-val">53.0</span></li>
+              <li style="--v: 1; --i: 2"><span class="bar-year">2025</span><span class="bar-track"><span class="bar"></span></span><span class="bar-val">63</span></li>
+            </ul>
+            <p class="sr-only">Family caregivers, in millions: 2015, 43.5; 2020, 53.0; 2025, 63. Up 45% in 10 years.</p>
+            <a class="chart-src" href="#src-3">Source: AARP &amp; NAC, Caregiving in the US 2015, 2020, 2025</a>
+          </figure>
+
+          <figure class="chart" data-chart>
+            <figcaption class="chart-title">Americans aged 65+ (millions)</figcaption>
+            <div class="chart-head">
+              <span class="chart-big"><span data-to="61">61</span> million</span>
+              <span class="chart-growth">+75% since 2000</span>
+            </div>
+            <ul class="bars" aria-hidden="true">
+              <li style="--v: 0.572; --i: 0"><span class="bar-year">2000</span><span class="bar-track"><span class="bar"></span></span><span class="bar-val">35.0</span></li>
+              <li style="--v: 0.658; --i: 1"><span class="bar-year">2010</span><span class="bar-track"><span class="bar"></span></span><span class="bar-val">40.3</span></li>
+              <li style="--v: 0.912; --i: 2"><span class="bar-year">2020</span><span class="bar-track"><span class="bar"></span></span><span class="bar-val">55.8</span></li>
+              <li class="is-est" style="--v: 1; --i: 3"><span class="bar-year">2024 <small>est.</small></span><span class="bar-track"><span class="bar"></span></span><span class="bar-val">61.2</span></li>
+            </ul>
+            <p class="sr-only">Americans aged 65 and older, in millions: 2000, 35.0; 2010, 40.3; 2020, 55.8; 2024 estimate, 61.2. Up 75% since 2000.</p>
+            <a class="chart-src" href="#src-4">Source: U.S. Census Bureau, decennial censuses and 2024 population estimate</a>
+          </figure>
+
+          <figure class="chart" data-chart>
+            <figcaption class="chart-title">Adults with 2+ chronic conditions (millions)</figcaption>
+            <div class="chart-head">
+              <span class="chart-big"><span data-to="130">130</span> million</span>
+              <span class="chart-growth">+14 million in 10 years</span>
+            </div>
+            <ul class="bars" aria-hidden="true">
+              <li class="is-est" style="--v: 0.892; --i: 0"><span class="bar-year">2013 <small>est.</small></span><span class="bar-track"><span class="bar"></span></span><span class="bar-val">~116</span></li>
+              <li style="--v: 1; --i: 1"><span class="bar-year">2023</span><span class="bar-track"><span class="bar"></span></span><span class="bar-val">~130</span></li>
+            </ul>
+            <p class="sr-only">Adults with two or more chronic conditions, in millions: 2013, about 116 (estimate); 2023, about 130. Up 14 million in 10 years.</p>
+            <a class="chart-src" href="#src-5">Source: CDC, Watson et al., Preventing Chronic Disease, 2025 (2013 count derived from reported prevalence)</a>
+          </figure>
+        </div>
+
+        <div class="gap-col">
+          <p class="gap-label">Capacity is stretched</p>
+          <ul class="pp-cards pp-cards-stack">
+            <li class="pp-card">
+              <span class="pp-num">22%</span>
+              <span class="pp-label">Of family caregivers have been trained for the medical tasks they do at home.</span>
+              <a class="pp-src" href="#src-3">Source: AARP &amp; NAC, 2025</a>
+            </li>
+            <li class="pp-card">
+              <span class="pp-num">1 in 5</span>
+              <span class="pp-label">Caregivers report fair or poor health caused by caregiving.</span>
+              <a class="pp-src" href="#src-3">Source: AARP &amp; NAC, 2025</a>
+            </li>
+            <li class="pp-card">
+              <span class="pp-num">1 in 4</span>
+              <span class="pp-label">Caregivers feel socially isolated.</span>
+              <a class="pp-src" href="#src-3">Source: AARP &amp; NAC, 2025</a>
+            </li>
+            <li class="pp-card">
+              <span class="pp-num">49%</span>
+              <span class="pp-label">Of a doctor’s instructions are recalled without prompting.</span>
+              <a class="pp-src" href="#src-6">Source: Laws et al., PLOS ONE, 2018</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <p class="gap-close">Discharge plans assume households can absorb this. With You is built around what they can realistically manage.</p>
+    </section>
+
+    <!-- ============ 4. WHERE IT PAYS ============ -->
+    <section class="p-block container">
+      <h2>Where it pays</h2>
+      <ul class="pay-grid">
+        <li class="pay-card">
+          <h3>Hospitals</h3>
+          <dl>
+            <dt>You’re accountable for:</dt>
+            <dd>Medicare readmission penalties (up to 3% of base payments)<sup><a href="#src-7">7</a></sup>, TEAM 30-day episode costs<sup><a href="#src-8">8</a></sup>, fixed transplant payments, bed capacity, no-shows.</dd>
+            <dt>With You moves:</dt>
+            <dd>Readmissions, follow-up visits kept, bed days, staff time.</dd>
+          </dl>
+        </li>
+        <li class="pay-card">
+          <h3>ACOs and value-based groups</h3>
+          <dl>
+            <dt>You’re accountable for:</dt>
+            <dd>Total cost of care and shared savings.</dd>
+            <dt>With You moves:</dt>
+            <dd>ER visits, readmissions, avoidable spending.</dd>
+          </dl>
+        </li>
+        <li class="pay-card">
+          <h3>Medicare Advantage and health plans</h3>
+          <dl>
+            <dt>You’re accountable for:</dt>
+            <dd>Star Ratings, including readmissions, transitions of care, follow-up after ER visits, and medication adherence.</dd>
+            <dt>With You moves:</dt>
+            <dd>Follow-up visits, prescriptions filled, readmissions.</dd>
+          </dl>
+        </li>
+        <li class="pay-card">
+          <h3>Kidney care organizations</h3>
+          <dl>
+            <dt>You’re accountable for:</dt>
+            <dd>Hospitalization costs for patients on dialysis and after transplant.</dd>
+            <dt>With You moves:</dt>
+            <dd>Hospital and ER use.</dd>
+          </dl>
+        </li>
+      </ul>
+    </section>
+
+    <!-- ============ 5. WHAT WE MEASURE ============ -->
+    <section class="p-block container">
+      <h2>What we measure</h2>
+      <table class="pp-table">
+        <thead>
+          <tr><th scope="col">Metric</th><th scope="col">When it’s proven</th><th scope="col">Why it’s worth money</th></tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row">Reach among all eligible households, including Medicaid and limited-English</th><td data-label="When it’s proven">90 days</td><td data-label="Why it’s worth money">Every other benefit depends on reach</td></tr>
+          <tr><th scope="row">Contact within 2 business days of discharge</th><td data-label="When it’s proven">90 days</td><td data-label="Why it’s worth money">Supports transitional care management billing and health plan quality measures</td></tr>
+          <tr><th scope="row">Follow-up visit within 7 or 14 days</th><td data-label="When it’s proven">90 days</td><td data-label="Why it’s worth money">Supports transitional care management billing; a health plan quality measure; linked to fewer readmissions</td></tr>
+          <tr><th scope="row">Discharge prescriptions filled</th><td data-label="When it’s proven">90 days</td><td data-label="Why it’s worth money">Medication adherence is a health plan quality measure</td></tr>
+          <tr><th scope="row">Barriers closed, and time to close</th><td data-label="When it’s proven">90 days</td><td data-label="Why it’s worth money">The leading indicator for missed care</td></tr>
+          <tr><th scope="row">Missed appointments</th><td data-label="When it’s proven">90 days</td><td data-label="Why it’s worth money">Each no-show is lost revenue</td></tr>
+          <tr><th scope="row">Nurse and coordinator time on post-discharge follow-up</th><td data-label="When it’s proven">90 days</td><td data-label="Why it’s worth money">Direct staff cost</td></tr>
+          <tr><th scope="row">30-day ER visits</th><td data-label="When it’s proven">Directional at 90 days; proven at 6–12 months</td><td data-label="Why it’s worth money">Direct cost for ACOs and health plans</td></tr>
+          <tr><th scope="row">30-day readmissions</th><td data-label="When it’s proven">Directional at 90 days; proven at 6–12 months</td><td data-label="Why it’s worth money">Penalties, episode costs, quality ratings</td></tr>
+          <tr><th scope="row">Bed days avoided</th><td data-label="When it’s proven">6–12 months</td><td data-label="Why it’s worth money">Frees capacity for new admissions</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- ============ 6. ESTIMATE YOUR IMPACT ============ -->
+    <section class="p-block container">
+      <h2>Estimate your impact</h2>
+      <form class="calc" data-calc>
+        <div class="calc-inputs">
+          <label><span>High-risk discharges per year</span><input name="discharges" id="calc-discharges" type="text" inputmode="decimal" value="1,000" data-commas /></label>
+          <label><span>Current 30-day readmission rate (%)</span><input name="rate" id="calc-rate" type="text" inputmode="decimal" value="20" /></label>
+          <label><span>Relative reduction to test (%)</span><input name="reduction" id="calc-reduction" type="text" inputmode="decimal" value="10" /></label>
+          <label><span>Cost per readmission ($)</span><input name="cost" id="calc-cost" type="text" inputmode="decimal" value="15,200" data-commas /></label>
+        </div>
+        <div class="calc-outputs">
+          <div>
+            <span class="calc-k">Readmissions avoided per year</span>
+            <output name="avoided" for="calc-discharges calc-rate calc-reduction" aria-live="polite">20</output>
+          </div>
+          <div>
+            <span class="calc-k">Estimated cost avoided per year</span>
+            <output name="saved" for="calc-discharges calc-rate calc-reduction calc-cost" aria-live="polite">$304,000</output>
+          </div>
+        </div>
+      </form>
+      <p class="calc-note">Illustrative only. Your results depend on your population and baseline. ER visits, bed days, and staff time are not included.</p>
+    </section>
+
+    <!-- ============ 7. HOW IT WORKS ============ -->
+    <section class="p-block container">
+      <h2>How it works</h2>
+      <ol class="pp-steps">
+        <li>A nurse approves the plan in about two minutes.</li>
+        <li>Fitted to the household: who does each task, in what language, and when.</li>
+        <li>A call when each task is due walks them through it. No app needed.</li>
+        <li>Barriers go to a community health worker; clinical questions go to your team. Every issue tracked until it’s closed.</li>
+      </ol>
+      <ul class="pp-notes">
+        <li>No new dashboard</li>
+        <li>Practical barriers don’t reach nurses</li>
+        <li>EHR integration after the pilot proves value</li>
+      </ul>
+    </section>
+
+    <!-- ============ 8. WHAT THE EVIDENCE SAYS ============ -->
     <section class="p-block container">
       <h2>What the evidence says</h2>
-      <p>Approaches like this have been shown to work. Community health worker support after discharge cut total hospital days by about a third across three trials.<sup>4</sup> Coaching patients and care partners through the transition lowered 30-day readmissions from 11.9% to 8.3%.<sup>5</sup></p>
-    </section>
-
-    <!-- ============ PILOT MEASURES ============ -->
-    <section class="p-block container">
-      <h2>What we’d measure in a 90-day pilot</h2>
-      <ul class="measures">
-        <li>Problems caught and closed</li>
-        <li>Questions answered at visits</li>
-        <li>Follow-up visits kept</li>
-        <li>Daily tasks confirmed</li>
-        <li>Household confidence (CTM-3)<sup>6</sup></li>
-        <li>No added nurse workload</li>
+      <ul class="pp-evidence">
+        <li>
+          <p>About one-third fewer hospital days with community health worker support after discharge.</p>
+          <a class="pp-src" href="#src-9">Source: Vasan et al., Health Services Research, 2020</a>
+        </li>
+        <li>
+          <p>30-day readmissions fell from 11.9% to 8.3% with transition coaching for patients and caregivers.</p>
+          <a class="pp-src" href="#src-10">Source: Coleman et al., Archives of Internal Medicine, 2006</a>
+        </li>
       </ul>
-      <p>ED visits and readmissions tracked as early signals.</p>
+      <p class="pp-close">Approaches like this have been shown to work when delivered by people. With You is designed to reach more households than staff alone can.</p>
     </section>
 
-    <!-- ============ OVER TIME ============ -->
+    <!-- ============ 9. BUILT BY A CAREGIVER ============ -->
     <section class="p-block container">
-      <h2>Why this gets better over time</h2>
-      <p>Hospitals already predict who will be readmitted. With You learns what goes wrong at home, and when, from the households themselves: data that grows with every family it supports.</p>
+      <h2>Built by a caregiver</h2>
+      <p>Founded by Yeshi Dolma, a family caregiver for eight years through cancer, transplant, and complications, and an applied scientist who built AI and prediction systems in big tech. Shaped by conversations with patients, caregivers, and clinicians.</p>
+      <p><a class="pp-link" href="why.html">Read why →</a></p>
     </section>
 
-    <!-- ============ CONTACT ============ -->
-    <section class="contact" id="contact">
-      <div class="orb orb-3" aria-hidden="true"></div>
-      <div class="container contact-inner">
-        <h2>Interested in a pilot? Get in touch.</h2>
-        <a class="btn btn-dark btn-lg" href="mailto:yeshidpn@gmail.com?subject=With%20You%20pilot">
-          yeshidpn@gmail.com
-        </a>
+    <!-- ============ 10. A 90-DAY PILOT ============ -->
+    <section class="p-block container" id="contact">
+      <div class="pilot-card">
+        <h2>A focused 90-day pilot</h2>
+        <p>One service line. Measured on every eligible household, with results reported for Medicaid, limited-English, and first-time caregiving households.</p>
+        <p class="pilot-k">What we need from you:</p>
+        <ul class="pilot-needs">
+          <li>A clinical champion</li>
+          <li>Approved care-pathway templates</li>
+          <li>A daily list of eligible discharges</li>
+          <li>A named owner for each type of issue</li>
+        </ul>
+        <p>With You learns what goes wrong at home, and when, from households themselves. That is data your system doesn’t have today.</p>
+        <a class="btn btn-dark btn-lg" href="mailto:yeshidpn@gmail.com?subject=With%20You%20pilot">Explore a focused pilot</a>
       </div>
+    </section>
+
+    <!-- ============ SOURCES ============ -->
+    <section class="p-block container pp-sources" id="sources">
+      <h2>Sources</h2>
+      <ol>
+        <li id="src-1">Weiss AJ, Jiang HJ, <a href="https://hcup-us.ahrq.gov/reports/statbriefs/sb278-Conditions-Frequent-Readmissions-By-Payer-2018.pdf" target="_blank" rel="noopener"><em>Overview of Clinical Conditions With Frequent and Costly Hospital Readmissions by Payer, 2018</em></a>, HCUP Statistical Brief #278, Agency for Healthcare Research and Quality. The ~$58 billion estimate is 3.8 million readmissions × $15,200 average cost.</li>
+        <li id="src-2">Vashi AA et al., <a href="https://doi.org/10.1001/jama.2012.216219" target="_blank" rel="noopener">“Use of hospital-based acute care among patients recently discharged from the hospital,”</a> <em>JAMA</em>, 2013.</li>
+        <li id="src-3">AARP &amp; National Alliance for Caregiving, <a href="https://www.aarp.org/pri/topics/ltss/family-caregiving/caregiving-in-the-us-2025/" target="_blank" rel="noopener"><em>Caregiving in the US</em></a> 2015, 2020, and 2025.</li>
+        <li id="src-4">U.S. Census Bureau, 2000, 2010, and 2020 decennial censuses; <a href="https://www.census.gov/programs-surveys/popest.html" target="_blank" rel="noopener">2024 population estimates</a>.</li>
+        <li id="src-5">Watson KB et al., <a href="https://doi.org/10.5888/pcd22.240539" target="_blank" rel="noopener">“Trends in Multiple Chronic Conditions Among US Adults,”</a> <em>Preventing Chronic Disease</em>, 2025. The 2013 count is derived from reported prevalence.</li>
+        <li id="src-6">Laws MB et al., <a href="https://doi.org/10.1371/journal.pone.0191940" target="_blank" rel="noopener">“Factors associated with patient recall of key information in ambulatory specialty care visits,”</a> <em>PLOS ONE</em>, 2018.</li>
+        <li id="src-7">CMS, <a href="https://www.cms.gov/medicare/payment/prospective-payment-systems/acute-inpatient-pps/hospital-readmissions-reduction-program-hrrp" target="_blank" rel="noopener">Hospital Readmissions Reduction Program</a>.</li>
+        <li id="src-8">CMS, <a href="https://www.cms.gov/priorities/innovation/innovation-models/team-model" target="_blank" rel="noopener">Transforming Episode Accountability Model (TEAM)</a>.</li>
+        <li id="src-9">Vasan A et al., <a href="https://doi.org/10.1111/1475-6773.13321" target="_blank" rel="noopener">“Effects of a standardized community health worker intervention on hospitalization among disadvantaged patients with multiple chronic conditions: a pooled analysis of three clinical trials,”</a> <em>Health Services Research</em>, 2020.</li>
+        <li id="src-10">Coleman EA et al., <a href="https://doi.org/10.1001/archinte.166.17.1822" target="_blank" rel="noopener">“The care transitions intervention: results of a randomized controlled trial,”</a> <em>Archives of Internal Medicine</em>, 2006.</li>
+      </ol>
     </section>
   </main>
 
@@ -135,17 +344,6 @@
       <div class="footer-top">
         <span class="brand"><span class="brand-dot" aria-hidden="true"></span>With You</span>
       </div>
-      <details class="sources">
-        <summary>Sources &amp; credits</summary>
-        <ol>
-          <li>Weiss AJ, Jiang HJ, <em>Overview of Clinical Conditions With Frequent and Costly Hospital Readmissions by Payer, 2018</em>, HCUP Statistical Brief #278, Agency for Healthcare Research and Quality, 2021.</li>
-          <li>Forster AJ et al., “The incidence and severity of adverse events affecting patients after discharge from the hospital,” <em>Annals of Internal Medicine</em>, 2003.</li>
-          <li>Vashi AA et al., “Use of hospital-based acute care among patients recently discharged from the hospital,” <em>JAMA</em>, 2013.</li>
-          <li>Vasan A et al., “Effects of a standardized community health worker intervention on hospitalization among disadvantaged patients with multiple chronic conditions: a pooled analysis of three clinical trials,” <em>Health Services Research</em>, 2020.</li>
-          <li>Coleman EA et al., “The care transitions intervention: results of a randomized controlled trial,” <em>Archives of Internal Medicine</em>, 2006.</li>
-          <li>Parry C et al., “Assessing the quality of transitional care: further applications of the Care Transitions Measure,” <em>Medical Care</em>, 2008.</li>
-        </ol>
-      </details>
       <p class="muted small">© 2026 With You</p>
     </div>
   </footer>
