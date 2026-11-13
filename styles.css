@@ -821,6 +821,7 @@ sup { font-size: 0.6em; color: var(--muted); margin-left: 1px; }
 .founder-story { max-width: 68ch; }
 .founder-story p { margin: 0 0 18px; font-size: 19px; line-height: 1.65; color: var(--ink-2); }
 .founder-story p:first-child { font-size: clamp(20px, 2vw, 23px); line-height: 1.55; color: var(--ink); font-weight: 500; }
+.founder-story .founder-pull { margin: 30px 0; padding-left: 18px; border-left: 3px solid var(--hub-blue); font-size: clamp(20px, 2vw, 23px); line-height: 1.45; font-weight: 700; color: var(--ink); text-wrap: pretty; }
 .founder-name { margin: 8px 0 0; font-weight: 700; }
 .founder-name span { font-weight: 400; color: var(--muted); }
 
