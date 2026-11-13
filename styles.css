@@ -264,7 +264,19 @@ sup { font-size: 0.6em; color: var(--muted); margin-left: 1px; }
   .bb-slide, .bb-strike, .bb-arrow, .bb-ours { transition: none !important; }
   .bb-dot.is-on span::after { animation: none; width: 100%; }
 }
-.diff-close { margin: 26px 0 0; padding-top: 22px; border-top: 1px solid var(--line); font-size: 18px; font-weight: 600; color: var(--ink-2); }
+.diff-close {
+  margin: 30px 0 0;
+  padding-top: 26px;
+  border-top: 1px solid var(--line);
+  font-size: clamp(20px, 2.1vw, 26px);
+  font-weight: 700;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+  text-align: center;
+  text-wrap: balance;
+  color: var(--ink);
+}
+.diff-close span { display: block; color: var(--hub-blue); }
 
 .orb {
   position: absolute;
@@ -305,6 +317,20 @@ sup { font-size: 0.6em; color: var(--muted); margin-left: 1px; }
 /* ---------- Octopus diagram (hero) ---------- */
 /* Only the hub shows at first; hovering it (.open) grows the arms out.
    The arm nearest the cursor gets .on and the rest dim. */
+.octo-lead {
+  position: relative;
+  z-index: 1;
+  max-width: 46ch;
+  margin: 88px auto 0;
+  padding: 0 24px;
+  font-size: clamp(19px, 1.9vw, 23px);
+  font-weight: 600;
+  line-height: 1.45;
+  text-align: center;
+  text-wrap: balance;
+  color: var(--ink);
+}
+.octo-lead + .octo { margin-top: 36px; }
 .octo {
   position: relative;
   z-index: 1;
@@ -925,7 +951,9 @@ sup { font-size: 0.6em; color: var(--muted); margin-left: 1px; }
   .bb-arrow { justify-self: start; margin-left: 2px; transform: rotate(90deg) translateX(-6px); font-size: 24px; line-height: 1; }
   .bb-slide.is-on .bb-arrow { transform: rotate(90deg); }
   .bb-ours p { font-size: 17px; }
-  .diff-close { margin-top: 20px; padding-top: 18px; font-size: 17px; }
+  .diff-close { margin-top: 22px; padding-top: 20px; font-size: 19px; }
+  .octo-lead { margin-top: 56px; padding: 0 18px; font-size: 18px; }
+  .octo-lead + .octo { margin-top: 24px; }
   .safe-list { grid-template-columns: 1fr; }
   .p-hero { padding-top: 64px; padding-bottom: 56px; }
   .p-block { padding-top: 64px; }
