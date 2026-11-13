@@ -817,7 +817,7 @@ sup { font-size: 0.6em; color: var(--muted); margin-left: 1px; }
   object-fit: cover;
   background: linear-gradient(135deg, var(--c1), var(--c2) 50%, var(--c3));
 }
-.founder-lead { max-width: 40ch; margin: 0 0 26px; font-size: clamp(24px, 2.6vw, 32px); font-weight: 700; line-height: 1.25; letter-spacing: -0.015em; text-wrap: balance; color: var(--ink); }
+.founder-lead { max-width: 44ch; margin: 0 auto 32px; font-size: clamp(20px, 2.2vw, 26px); font-weight: 600; line-height: 1.35; letter-spacing: -0.01em; text-align: center; text-wrap: balance; color: var(--ink-2); }
 .founder-story { max-width: 68ch; }
 .founder-story p { margin: 0 0 18px; font-size: 19px; line-height: 1.65; color: var(--ink-2); }
 .founder-story p:first-child { font-size: clamp(20px, 2vw, 23px); line-height: 1.55; color: var(--ink); font-weight: 500; }
