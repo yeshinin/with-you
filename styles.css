@@ -188,19 +188,9 @@ sup { font-size: 0.6em; color: var(--muted); margin-left: 1px; }
   max-width: 40ch;
   margin: 28px 0 36px;
 }
-.lede-note {
-  max-width: 52ch;
-  margin: -14px 0 34px;
-  padding-left: 14px;
-  border-left: 3px solid var(--hub-blue);
-  font-size: 17px;
-  line-height: 1.55;
-  color: var(--ink-2);
-}
 /* the home hero uses about three quarters of the width, leaving room for the glow */
 .hero .lede { max-width: 54ch; }
-.hero .lede-note { max-width: 70ch; }
-.tagline { max-width: 60ch; margin: -14px 0 30px; font-size: clamp(18px, 1.7vw, 20px); font-weight: 600; color: var(--ink); }
+.tagline { max-width: 60ch; margin: -14px 0 34px; font-size: clamp(18px, 1.7vw, 20px); font-weight: 600; color: var(--ink); }
 .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
 .hero-link { margin-left: 6px; font-size: 16px; color: var(--ink-2); text-underline-offset: 4px; }
 .hero-link:hover { color: var(--ink); }
