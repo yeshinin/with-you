@@ -833,15 +833,7 @@ sup { font-size: 0.6em; color: var(--muted); margin-left: 1px; }
   .charts-anim .chart .bar { transform: none; transition: none; }
 }
 
-/* where it pays */
-.pay-grid { list-style: none; margin: 36px 0 0; padding: 0; display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
-.pay-card { padding: 26px 28px; border-radius: var(--radius); background: var(--bg-soft); border: 1px dotted var(--line); }
-.pay-card h3 { font-size: 22px; margin-bottom: 14px; }
-.pay-card dl { margin: 0; }
-.pay-card dt { font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
-.pay-card dd { margin: 4px 0 14px; font-size: 17px; line-height: 1.5; color: var(--ink-2); }
-.pay-card dd:last-child { margin-bottom: 0; color: var(--ink); font-weight: 600; }
-.pay-card sup a, .pp-table sup a, .calc sup a { color: inherit; text-decoration: none; }
+.pp-table sup a, .calc sup a { color: inherit; text-decoration: none; }
 
 /* what we measure */
 .pp-table { width: 100%; margin-top: 32px; border-collapse: collapse; font-size: 16px; line-height: 1.45; }
@@ -1063,8 +1055,6 @@ sup { font-size: 0.6em; color: var(--muted); margin-left: 1px; }
   .pp-cards-stack .pp-num { grid-row: auto; }
   .chart { padding: 20px 18px; }
   .bars li { grid-template-columns: 4.2em 1fr 2.9em; gap: 8px; }
-  .pay-grid { grid-template-columns: 1fr; }
-  .pay-card { padding: 22px; }
   /* the table becomes one card per metric */
   .pp-table, .pp-table tbody, .pp-table tr, .pp-table th, .pp-table td { display: block; width: auto !important; }
   .pp-table thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
