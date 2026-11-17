@@ -1,0 +1,3 @@
+# never commit private keys
+*.pem
+*.key
