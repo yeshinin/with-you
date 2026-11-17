@@ -894,6 +894,27 @@ sup { font-size: 0.6em; color: var(--muted); margin-left: 1px; }
   .pp-steps { grid-template-columns: repeat(2, 1fr); }
 }
 
+/* ---------- Explorer documentation, privacy and terms ---------- */
+.doc-page .p-hero { padding-bottom: 40px; }
+.doc-page .p-hero h1 { max-width: 18ch; }
+.doc-page .p-hero .lede { max-width: 58ch; margin-bottom: 0; }
+.doc-date { margin: 18px 0 0; font-size: 14px; color: var(--muted); }
+.doc { position: relative; z-index: 1; max-width: calc(760px + 48px); margin-left: auto; margin-right: auto; margin-top: 52px; }
+.doc h2 { max-width: none; font-size: clamp(24px, 2.6vw, 30px); margin-bottom: 14px; }
+.doc p { max-width: 64ch; margin: 0 0 12px; color: var(--ink-2); }
+.doc a { color: var(--ink); text-underline-offset: 3px; }
+.doc-data { display: grid; gap: 10px; margin: 6px 0 16px; }
+.doc-data div { display: grid; grid-template-columns: 13em 1fr; gap: 16px; padding: 16px 20px; border-radius: 16px; background: var(--bg-soft); border: 1px dotted var(--line); }
+.doc-data dt { font-weight: 700; color: var(--ink); }
+.doc-data dd { margin: 0; color: var(--ink-2); }
+.doc-points { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+.doc-points li { padding: 18px 22px; border-radius: 16px; background: var(--bg-soft); border: 1px dotted var(--line); color: var(--ink-2); }
+.doc-points strong { color: var(--ink); }
+.doc-contact { padding-bottom: 80px; }
+.doc-links { display: flex; flex-wrap: wrap; gap: 6px 20px; font-size: 15px; }
+.doc-links a { color: var(--ink-2); text-underline-offset: 3px; }
+.doc-links a[aria-current="page"] { color: var(--ink); font-weight: 700; text-decoration: none; }
+
 /* ---------- Founder ---------- */
 .founder { padding-top: 60px; padding-bottom: 60px; }
 .founder-page { position: relative; z-index: 1; padding-top: 110px; }
@@ -1048,6 +1069,9 @@ sup { font-size: 0.6em; color: var(--muted); margin-left: 1px; }
   .safe-list { grid-template-columns: 1fr; }
   .p-hero { padding-top: 64px; padding-bottom: 56px; }
   .p-block { padding-top: 64px; }
+  .doc-data div { grid-template-columns: 1fr; gap: 4px; padding: 14px 16px; }
+  .doc-points li { padding: 16px; }
+  .doc { margin-top: 40px; }
   .pp .p-block { padding-top: 76px; }
   .pp-goals { grid-template-columns: 1fr; gap: 10px; }
   .pp-goals li { font-size: 16px; }

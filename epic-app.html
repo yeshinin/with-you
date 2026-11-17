@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>With You Explorer · With You</title>
+  <meta name="description" content="What the With You Explorer does, the Epic sandbox data it reads and why, that it is read-only, how to disconnect, and how to get in touch." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@1&family=Karla:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <script>document.documentElement.classList.add("js")</script>
+  <script src="script.js" defer></script>
+  <link rel="icon" href="icon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+  <meta name="theme-color" content="#fffdf3" />
+  <!-- link previews (LinkedIn, WhatsApp, iMessage, Slack, X …) -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="With You" />
+  <meta property="og:title" content="With You Explorer · With You" />
+  <meta property="og:description" content="What the With You Explorer does, the Epic sandbox data it reads and why, that it is read-only, how to disconnect, and how to get in touch." />
+  <meta property="og:url" content="https://yeshinin.github.io/with-you/epic-app.html" />
+  <meta property="og:image" content="https://yeshinin.github.io/with-you/images/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="With You: understand your care, navigate daily life, recover with support." />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://yeshinin.github.io/with-you/images/og-image.png" />
+</head>
+<body>
+
+  <!-- ============ NAV ============ -->
+  <header class="nav">
+    <a href="index.html#top" class="brand">
+      <span class="brand-dot" aria-hidden="true"></span>
+      With You
+    </a>
+    <nav class="nav-links" id="site-menu" aria-label="Main">
+      <a href="index.html#why">Why it matters</a>
+      <a href="index.html#how">How it works</a>
+      <a href="why.html">Why I’m building this</a>
+      <a href="partners.html">For health systems</a>
+    </nav>
+    <div class="nav-actions">
+      <a href="#contact" class="btn btn-dark btn-sm">Get in touch</a>
+      <button class="menu-toggle" type="button" aria-controls="site-menu" aria-expanded="false" aria-label="Menu">
+        <span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main id="top" class="page-clip doc-page">
+    <div class="orb orb-1" aria-hidden="true"></div>
+
+    <section class="p-hero container">
+      <p class="eyebrow">With You Explorer · App documentation</p>
+      <h1>With You Explorer</h1>
+      <p class="lede">A read-only test app that connects to Epic’s sandbox to explore how a discharge plan can become step-by-step guidance at home. It uses Epic’s fictional test patients only.</p>
+      <p class="doc-date">Last updated 17 November 2026</p>
+    </section>
+
+    <section class="container doc">
+      <h2>What the app does</h2>
+      <p>The explorer signs in to Epic’s sandbox using SMART on FHIR and reads a test patient’s record. It uses that record to draft a plan for home: which tasks are due, when, and what each step involves.</p>
+      <p>It is for testing and design only. It is not used with real patients or in anyone’s care.</p>
+    </section>
+
+    <section class="container doc">
+      <h2>What data it reads, and why</h2>
+      <dl class="doc-data">
+        <div><dt>Patient basics</dt><dd>Name, date of birth, and preferred language, to address the patient and choose the language for guidance.</dd></div>
+        <div><dt>Medications</dt><dd>Discharge prescriptions and the medication list, to build the list of medicine tasks and when each is due.</dd></div>
+        <div><dt>Appointments and care plan</dt><dd>Follow-up visits and care-plan instructions, to schedule reminders and walk through each task.</dd></div>
+        <div><dt>Conditions and allergies</dt><dd>The problem list and allergies, to give context for the plan, such as which warning signs to watch for.</dd></div>
+      </dl>
+      <p>The explorer asks Epic only for the data above, and only for the test patient chosen at sign-in.</p>
+    </section>
+
+    <section class="container doc">
+      <h2>Read-only</h2>
+      <p>The explorer only reads. It never creates, changes, or deletes anything in Epic.</p>
+      <p>Anything it reads is kept on the computer running the explorer, never on a shared server. See the <a href="privacy.html">privacy policy</a>.</p>
+    </section>
+
+    <section class="container doc">
+      <h2>How to disconnect</h2>
+      <p>Choose <strong>Disconnect</strong> in the explorer. This ends the Epic session and deletes the access token and every record the explorer saved on that computer.</p>
+      <p>Access also ends on its own when the Epic sign-in expires.</p>
+    </section>
+
+    <!-- ============ CONTACT ============ -->
+    <section class="container doc doc-contact" id="contact">
+      <h2>Contact</h2>
+      <p>Questions about the explorer, this page, or your data: email Yeshi Dolma at <a href="mailto:yeshidpn@gmail.com?subject=With%20You%20Explorer">yeshidpn@gmail.com</a>.</p>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <span class="brand"><span class="brand-dot" aria-hidden="true"></span>With You</span>
+        <nav class="doc-links" aria-label="With You Explorer">
+          <a href="epic-app.html" aria-current="page">How the explorer works</a>
+          <a href="privacy.html">Privacy policy</a>
+          <a href="terms.html">Terms of use</a>
+        </nav>
+      </div>
+      <p class="muted small">© 2026 With You</p>
+    </div>
+  </footer>
+
+</body>
+</html>
