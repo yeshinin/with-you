@@ -298,7 +298,7 @@ sup { font-size: 0.6em; color: var(--muted); margin-left: 1px; }
 .octo-lead {
   position: relative;
   z-index: 1;
-  max-width: 46ch;
+  max-width: 980px;
   margin: 88px auto 0;
   padding: 0 24px;
   font-size: clamp(19px, 1.9vw, 23px);
@@ -309,8 +309,8 @@ sup { font-size: 0.6em; color: var(--muted); margin-left: 1px; }
   color: var(--ink);
 }
 .octo-lead p { margin: 0; }
-.octo-lead-main { font-size: clamp(22px, 2.5vw, 30px); font-weight: 700; letter-spacing: -0.015em; line-height: 1.25; color: var(--ink); }
-.octo-lead-sub { margin-top: 8px !important; font-size: clamp(17px, 1.6vw, 20px); font-weight: 400; color: var(--ink-2); }
+.octo-lead-main { max-width: 34ch; margin: 0 auto !important; font-size: clamp(22px, 2.5vw, 30px); font-weight: 700; letter-spacing: -0.015em; line-height: 1.25; color: var(--ink); }
+.octo-lead-sub { max-width: 72ch; margin: 10px auto 0 !important; font-size: clamp(15px, 1.35vw, 17px); font-style: italic; font-weight: 400; line-height: 1.5; color: var(--ink-2); }
 .octo-lead + .octo { margin-top: 36px; }
 .octo {
   position: relative;
