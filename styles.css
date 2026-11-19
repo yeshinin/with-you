@@ -480,6 +480,7 @@ sup { font-size: 0.6em; color: var(--muted); margin-left: 1px; }
   font-weight: 500;
   line-height: 1.45;
   color: var(--ink-2);
+  white-space: pre-line;
   transition: opacity 0.3s ease;
 }
 .arm-example.is-swapping { opacity: 0; }

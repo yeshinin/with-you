@@ -121,6 +121,14 @@ if (octo) {
     const shift = Math.max(0, width - room);
     sub.style.maxWidth = `${width}px`;
     if (shift) sub.style[left ? "right" : "left"] = `${-shift}px`;
+
+    // open upward or downward, whichever fits inside the section
+    if (!("up" in arm.dataset)) arm.dataset.up = arm.classList.contains("arm-up") ? "1" : "";
+    arm.classList.toggle("arm-up", arm.dataset.up === "1");
+    const bounds = (octo.closest(".hero") || document.body).getBoundingClientRect();
+    const box = sub.getBoundingClientRect();
+    if (!arm.classList.contains("arm-up") && box.bottom > bounds.bottom - edge) arm.classList.add("arm-up");
+    else if (arm.classList.contains("arm-up") && box.top < bounds.top + edge) arm.classList.remove("arm-up");
   };
 
   let openedAt = 0;
@@ -198,12 +206,12 @@ if (octo) {
     setInterval(() => {
       const showing = phone() || arm.classList.contains("on");
       if (!showing) {
-        if (i !== 0) { i = 0; el.textContent = `“${lines[0]}”`; }
+        if (i !== 0) { i = 0; el.textContent = lines[0]; }
         return;
       }
       i = (i + 1) % lines.length;
       el.classList.add("is-swapping");
-      setTimeout(() => { el.textContent = `“${lines[i]}”`; el.classList.remove("is-swapping"); }, 300);
+      setTimeout(() => { el.textContent = lines[i]; el.classList.remove("is-swapping"); fitBubble(arm); }, 300);
     }, 5000);
   });
 }
