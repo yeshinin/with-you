@@ -76,8 +76,10 @@ if (carousel) {
   carousel.addEventListener("pointercancel", endDrag);
 }
 
-// Octopus diagram: hovering (or tapping) the hub grows the arms out; while
-// they're out, the arm nearest the cursor is highlighted
+// Octopus diagram: the hub grows the six arms out on hover, click/tap, or
+// keyboard (Enter/Space, or focus). While open, the arm nearest the mouse,
+// or the arm focused/tapped, shows its bubble with the "how" and a spoken
+// example. Under 720px the arms are a plain list, always shown.
 const octo = document.querySelector(".octo");
 
 if (octo) {
@@ -85,6 +87,8 @@ if (octo) {
   const svg = octo.querySelector(".octo-arms");
   const arms = [...octo.querySelectorAll(".arm")];
   const marks = [...octo.querySelectorAll(".octo-arms [data-arm]")];
+  const phone = () => window.matchMedia("(max-width: 720px)").matches;
+  const still = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const tips = [...svg.querySelectorAll("circle")].map((c) => ({
     id: c.dataset.arm,
     angle: Math.atan2(c.cy.baseVal.value - 270, c.cx.baseVal.value - 500),
@@ -94,31 +98,54 @@ if (octo) {
     if (id === (octo.dataset.active || null)) return;
     if (id) octo.dataset.active = id;
     else delete octo.dataset.active;
-    arms.forEach((arm) => arm.classList.toggle("on", arm.dataset.arm === id));
+    arms.forEach((arm) => {
+      const on = arm.dataset.arm === id;
+      arm.classList.toggle("on", on);
+      arm.querySelector(".arm-label").setAttribute("aria-expanded", String(on));
+    });
     marks.forEach((mark) => mark.classList.toggle("on", mark.dataset.arm === id));
   };
 
+  let openedAt = 0;
   const setOpen = (open) => {
+    if (open && !octo.classList.contains("open")) openedAt = Date.now();
     octo.classList.toggle("open", open);
     hub.setAttribute("aria-expanded", String(open));
     if (!open) focusArm(null);
   };
+  const isOpen = () => octo.classList.contains("open");
 
-  hub.addEventListener("mouseenter", () => setOpen(true));
-  hub.addEventListener("focus", () => setOpen(true));
-  hub.addEventListener("click", () => setOpen(!octo.classList.contains("open")));
-  hub.addEventListener("blur", () => setOpen(false));
-  octo.addEventListener("mouseleave", () => setOpen(false));
+  // mouse hover (touch screens fire click instead, handled below)
+  hub.addEventListener("pointerenter", (e) => { if (e.pointerType === "mouse" && !phone()) setOpen(true); });
+  octo.addEventListener("pointerleave", (e) => { if (e.pointerType === "mouse" && !phone() && !octo.querySelector(":focus-visible")) setOpen(false); });
 
-  // phones have no hover: tap a label to open or close its sub-points
-  arms.forEach((arm) =>
-    arm.addEventListener("click", () => {
-      if (window.matchMedia("(max-width: 720px)").matches) arm.classList.toggle("open");
-    })
-  );
+  // click or tap the hub to open or close; Enter/Space do the same
+  // (a click right after hover or focus opened it keeps it open)
+  hub.addEventListener("click", () => {
+    if (phone()) return;
+    if (isOpen() && Date.now() - openedAt < 600) return;
+    setOpen(!isOpen());
+  });
+  hub.addEventListener("keydown", (e) => {
+    if (e.key === "Enter" || e.key === " ") { e.preventDefault(); if (!phone()) setOpen(!isOpen()); }
+    if (e.key === "Escape") setOpen(false);
+  });
+  hub.addEventListener("focus", () => { if (!phone()) setOpen(true); });
+
+  // each arm is a button: focusing or tapping it shows its bubble
+  arms.forEach((arm) => {
+    const label = arm.querySelector(".arm-label");
+    label.addEventListener("focus", () => { if (phone()) return; setOpen(true); focusArm(arm.dataset.arm); });
+    label.addEventListener("click", () => { if (phone()) return; setOpen(true); focusArm(arm.dataset.arm); });
+    label.addEventListener("keydown", (e) => { if (e.key === "Escape") { setOpen(false); hub.focus(); } });
+  });
+
+  // close when focus leaves the diagram, or on a tap outside it
+  octo.addEventListener("focusout", (e) => { if (!phone() && !octo.contains(e.relatedTarget)) setOpen(false); });
+  document.addEventListener("pointerdown", (e) => { if (e.pointerType !== "mouse" && isOpen() && !octo.contains(e.target)) setOpen(false); });
 
   octo.addEventListener("mousemove", (e) => {
-    if (!octo.classList.contains("open") || window.matchMedia("(max-width: 720px)").matches) return;
+    if (!isOpen() || phone()) return;
     // reading the open label keeps the focus where it is
     if (e.target.closest(".arm.on")) return;
     const box = hub.getBoundingClientRect();
@@ -133,6 +160,34 @@ if (octo) {
     const gap = (a) => Math.abs(Math.atan2(Math.sin(a - angle), Math.cos(a - angle)));
     const nearest = tips.reduce((best, tip) => (gap(tip.angle) < gap(best.angle) ? tip : best));
     focusArm(nearest.id);
+  });
+
+  // on phones every arm's text is shown, so say so to screen readers
+  const syncPhone = () => {
+    if (phone()) { setOpen(false); arms.forEach((arm) => arm.querySelector(".arm-label").setAttribute("aria-expanded", "true")); }
+    else arms.forEach((arm) => arm.querySelector(".arm-label").setAttribute("aria-expanded", String(arm.classList.contains("on"))));
+  };
+  syncPhone();
+  window.matchMedia("(max-width: 720px)").addEventListener("change", syncPhone);
+
+  // an arm with several examples rotates them every 5 s while it's showing
+  // (on phones the list is always showing); reduced motion keeps the first
+  octo.querySelectorAll(".arm-example[data-examples]").forEach((el) => {
+    let lines;
+    try { lines = JSON.parse(el.dataset.examples); } catch { return; }
+    if (!Array.isArray(lines) || lines.length < 2 || still) return;
+    const arm = el.closest(".arm");
+    let i = 0;
+    setInterval(() => {
+      const showing = phone() || arm.classList.contains("on");
+      if (!showing) {
+        if (i !== 0) { i = 0; el.textContent = `“${lines[0]}”`; }
+        return;
+      }
+      i = (i + 1) % lines.length;
+      el.classList.add("is-swapping");
+      setTimeout(() => { el.textContent = `“${lines[i]}”`; el.classList.remove("is-swapping"); }, 300);
+    }, 5000);
   });
 }
 

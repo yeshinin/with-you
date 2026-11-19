@@ -139,10 +139,10 @@
 
       <!-- Octopus diagram: hover the With You hub and six kinds of support grow out as arms;
            the focused arm pops up a bubble with its detail -->
-      <p class="octo-lead reveal">
-        Technology designed to reduce disparity in support: across language, health literacy,
-        everyday circumstances, and comfort with technology.
-      </p>
+      <div class="octo-lead reveal">
+        <p class="octo-lead-main">If you can answer a phone, you can use With You.</p>
+        <p class="octo-lead-sub">No reading, no typing, no menus. Just talk.</p>
+      </div>
       <div class="octo reveal" aria-label="What With You does">
         <svg class="octo-arms" viewBox="0 0 1000 540" aria-hidden="true">
           <defs>
@@ -166,22 +166,58 @@
           <circle data-arm="6" cx="772" cy="450" r="5" />
         </svg>
 
-        <div class="hub" tabindex="0" role="button" aria-expanded="false" aria-label="With You: show what it does">
+        <div class="hub" tabindex="0" role="button" aria-expanded="false" aria-label="With You: tap to see how it works">
           <div class="hub-default">
             <div class="hub-wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
             <strong class="serif-gradient">With You</strong>
-            <span>Your voice-first recovery companion</span>
-            <small class="hub-hint">Hover to explore</small>
+            <span>It calls. You talk. It follows through.</span>
+            <small class="hub-hint">Tap or hover to see how</small>
           </div>
         </div>
 
         <ul class="arms">
-          <li class="arm arm-l" data-arm="1" style="--d:0.00s;top:16.7%;right:78.2%"><div class="arm-label">Calls you when it’s time</div><ul class="arm-subs"><li>Medicines and care tasks, walked through by voice</li></ul></li>
-          <li class="arm arm-l" data-arm="2" style="--d:0.06s;top:50.0%;right:78.2%"><div class="arm-label">Your plan in plain language</div><ul class="arm-subs"><li>In your language, with visuals and audio</li></ul></li>
-          <li class="arm arm-up arm-l" data-arm="3" style="--d:0.12s;top:83.3%;right:78.2%"><div class="arm-label">What to expect, week by week</div><ul class="arm-subs"><li>Approved by your care team, with warning signs and who to call</li></ul></li>
-          <li class="arm arm-r" data-arm="4" style="--d:0.18s;top:16.7%;left:78.2%"><div class="arm-label">Problems caught early</div><ul class="arm-subs"><li>Designed to learn where recovery gets difficult.</li><li>Anticipate barriers, check in earlier, and help connect with support before care is missed.</li></ul></li>
-          <li class="arm arm-r" data-arm="5" style="--d:0.24s;top:50.0%;left:78.2%"><div class="arm-label">Every visit counts</div><ul class="arm-subs"><li>Your questions ready before, and checked after</li></ul></li>
-          <li class="arm arm-up arm-r" data-arm="6" style="--d:0.30s;top:83.3%;left:78.2%"><div class="arm-label">People when you need them</div><ul class="arm-subs"><li>Community health workers for hard cases, and peers who’ve been there</li></ul></li>
+          <li class="arm arm-l" data-arm="1" style="--d:0.00s;top:16.7%;right:78.2%">
+            <button type="button" class="arm-label" aria-expanded="false" aria-controls="arm-1-detail">Rings when it’s time</button>
+            <div class="arm-subs" id="arm-1-detail">
+              <p class="arm-how">Like a phone call. Answer and it starts talking, with no app to open. If no one picks up, it tries again, then calls your care partner.</p>
+              <p class="arm-example">“Good morning, Mr. Lee. It’s time for your 8 o’clock medicines.”</p>
+            </div>
+          </li>
+          <li class="arm arm-l" data-arm="2" style="--d:0.06s;top:50.0%;right:78.2%">
+            <button type="button" class="arm-label" aria-expanded="false" aria-controls="arm-2-detail">Talks you through it, one step at a time</button>
+            <div class="arm-subs" id="arm-2-detail">
+              <p class="arm-how">Slowly, in your language. It waits until you say “done” and repeats as often as you need.</p>
+              <p class="arm-example">“First, the small white pill. Tell me when you’ve taken it.”</p>
+            </div>
+          </li>
+          <li class="arm arm-up arm-l" data-arm="3" style="--d:0.12s;top:83.3%;right:78.2%">
+            <button type="button" class="arm-label" aria-expanded="false" aria-controls="arm-3-detail">Shows you when words aren’t enough</button>
+            <div class="arm-subs" id="arm-3-detail">
+              <p class="arm-how">A photo of your actual pill, or a short video of the dressing change, big and clear on your screen.</p>
+              <p class="arm-example">“Look at your phone. This is the one.”</p>
+            </div>
+          </li>
+          <li class="arm arm-r" data-arm="4" style="--d:0.18s;top:16.7%;left:78.2%">
+            <button type="button" class="arm-label" aria-expanded="false" aria-controls="arm-4-detail">Already knows your plan and your household</button>
+            <div class="arm-subs" id="arm-4-detail">
+              <p class="arm-how">Your care team’s plan comes straight from the hospital, so nobody types it in. It learns who helps with what and when you’re free.</p>
+              <p class="arm-example">“Your daughter gives the evening dose, so I’ll call her at 7.”</p>
+            </div>
+          </li>
+          <li class="arm arm-r" data-arm="5" style="--d:0.24s;top:50.0%;left:78.2%">
+            <button type="button" class="arm-label" aria-expanded="false" aria-controls="arm-5-detail">Spots what might get in the way, and gets the right person</button>
+            <div class="arm-subs" id="arm-5-detail">
+              <p class="arm-how">A ride, a refill, the cost, a question for your doctor. Rides and costs go to a community health worker. Anything medical goes to your care team, and it never guesses. It checks back until the problem is solved.</p>
+              <p class="arm-example">“Your appointment is Thursday. Do you have a ride?”</p>
+            </div>
+          </li>
+          <li class="arm arm-up arm-r" data-arm="6" style="--d:0.30s;top:83.3%;left:78.2%">
+            <button type="button" class="arm-label" aria-expanded="false" aria-controls="arm-6-detail">More help when you need it. Less when you don’t.</button>
+            <div class="arm-subs" id="arm-6-detail">
+              <p class="arm-how">As you get the hang of things, it steps back. If you need it every day, it’s there every day. It skips what it already knows and asks earlier about what’s gotten in the way before.</p>
+              <p class="arm-example" data-examples="[&quot;Last time the ride fell through, so Maya is booking Thursday’s for you. Is that okay?&quot;, &quot;You’ve got the morning pills down, so I’ll just check in. Say ‘walk me through it’ anytime.&quot;]">“Last time the ride fell through, so Maya is booking Thursday’s for you. Is that okay?”</p>
+            </div>
+          </li>
         </ul>
       </div>
     </section>
