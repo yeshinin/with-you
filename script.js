@@ -87,7 +87,7 @@ if (octo) {
   const svg = octo.querySelector(".octo-arms");
   const arms = [...octo.querySelectorAll(".arm")];
   const marks = [...octo.querySelectorAll(".octo-arms [data-arm]")];
-  const phone = () => window.matchMedia("(max-width: 720px)").matches;
+  const phone = () => window.matchMedia("(max-width: 960px)").matches;
   const still = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const tips = [...svg.querySelectorAll("circle")].map((c) => ({
     id: c.dataset.arm,
@@ -104,6 +104,23 @@ if (octo) {
       arm.querySelector(".arm-label").setAttribute("aria-expanded", String(on));
     });
     marks.forEach((mark) => mark.classList.toggle("on", mark.dataset.arm === id));
+    if (id) fitBubble(arms.find((arm) => arm.dataset.arm === id));
+  };
+
+  // keep the open bubble inside the page: narrow it, and if that's not
+  // enough, slide it toward the centre (over the hub)
+  const fitBubble = (arm) => {
+    if (!arm || phone()) return;
+    const sub = arm.querySelector(".arm-subs");
+    sub.style.maxWidth = sub.style.right = sub.style.left = "";
+    const a = arm.getBoundingClientRect();
+    const edge = 12;
+    const left = arm.classList.contains("arm-l");
+    const room = left ? a.right - edge : document.documentElement.clientWidth - edge - a.left;
+    const width = Math.min(300, Math.max(240, room));
+    const shift = Math.max(0, width - room);
+    sub.style.maxWidth = `${width}px`;
+    if (shift) sub.style[left ? "right" : "left"] = `${-shift}px`;
   };
 
   let openedAt = 0;
@@ -168,7 +185,7 @@ if (octo) {
     else arms.forEach((arm) => arm.querySelector(".arm-label").setAttribute("aria-expanded", String(arm.classList.contains("on"))));
   };
   syncPhone();
-  window.matchMedia("(max-width: 720px)").addEventListener("change", syncPhone);
+  window.matchMedia("(max-width: 960px)").addEventListener("change", syncPhone);
 
   // an arm with several examples rotates them every 5 s while it's showing
   // (on phones the list is always showing); reduced motion keeps the first
@@ -302,3 +319,20 @@ if (calc) {
   );
   update();
 }
+
+// Copy-to-clipboard buttons (e.g. the pilot email address)
+document.querySelectorAll("[data-copy]").forEach((btn) => {
+  const status = btn.parentElement.querySelector("[role=status]");
+  btn.addEventListener("click", async () => {
+    const value = btn.dataset.copy;
+    try {
+      await navigator.clipboard.writeText(value);
+      if (status) status.textContent = "Copied. Paste it into your email app.";
+    } catch {
+      // clipboard blocked: select the address so it can be copied by hand
+      const addr = btn.parentElement.querySelector(".pilot-email-addr");
+      if (addr) window.getSelection().selectAllChildren(addr);
+      if (status) status.textContent = "Selected. Press Cmd+C (or Ctrl+C) to copy.";
+    }
+  });
+});

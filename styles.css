@@ -897,6 +897,11 @@ sup { font-size: 0.6em; color: var(--muted); margin-left: 1px; }
 .pilot-needs { list-style: none; margin: 10px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 10px; }
 .pilot-needs li { padding: 8px 16px; border-radius: 999px; background: rgba(255, 255, 255, 0.7); border: 1px solid rgba(23, 23, 23, 0.1); font-size: 15px; font-weight: 600; }
 .pilot-card .btn { margin-top: 30px; }
+.pilot-email { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 16px; margin-top: 28px; padding: 20px 22px; border-radius: 20px; background: rgba(255, 255, 255, 0.75); border: 1px solid rgba(23, 23, 23, 0.1); scroll-margin-top: 100px; }
+.pp .pilot-card .pilot-email-k { flex-basis: 100%; margin: 0; font-weight: 600; color: var(--ink-2); }
+.pp .pilot-card .pilot-email-addr { margin: 0; font-size: clamp(20px, 2.4vw, 26px); font-weight: 800; letter-spacing: -0.01em; color: var(--ink); user-select: all; overflow-wrap: anywhere; }
+.pilot-email .btn { margin-top: 0; }
+.pilot-email-done { font-size: 14px; color: var(--ink-2); }
 
 /* sources */
 .pp-sources { padding-bottom: 70px; }
@@ -1030,6 +1035,18 @@ sup { font-size: 0.6em; color: var(--muted); margin-left: 1px; }
 }
 
 @media (max-width: 960px) {
+  /* narrow screens: hub on top, then all six arms as a numbered list, always shown */
+  .octo { aspect-ratio: auto; margin-top: 56px; }
+  .octo-arms { display: none; }
+  .hub { position: static; transform: none !important; width: auto; min-height: 0; margin-bottom: 18px; cursor: default; }
+  .hub-hint { display: none; }
+  .arms { counter-reset: arm; display: grid; gap: 10px; }
+  .arm, .arm-l, .arm-r { position: static !important; opacity: 1 !important; transform: none !important; max-width: none; text-align: left; counter-increment: arm; padding: 16px 16px 14px; border-radius: 18px; background: #fff; border: 1px solid rgba(23, 23, 23, 0.1); }
+  .arm-label, .arm.on .arm-label, .octo[data-active] .arm:not(.on) .arm-label { display: block; width: 100%; padding: 0; border: 0; border-radius: 0; background: none; color: var(--ink); opacity: 1; transform: none !important; cursor: default; font-size: 17px; font-weight: 700; line-height: 1.3; }
+  .arm-label::before { content: counter(arm) ". "; color: var(--hub-blue-deep); }
+  .arm-subs, .arm-up .arm-subs, .arm.on .arm-subs { position: static; width: auto; max-width: none; margin: 6px 0 0; padding: 0; border: 0; background: none; box-shadow: none; opacity: 1; transform: none; pointer-events: auto; font-size: 16px; color: var(--ink-2); }
+  .arm-subs::before { display: none; }
+  .arm-example { font-size: 15px; }
 }
 @media (max-width: 720px) {
   body { font-size: 17px; }
@@ -1056,18 +1073,6 @@ sup { font-size: 0.6em; color: var(--muted); margin-left: 1px; }
   .orb-1 { width: 340px; height: 340px; right: -140px; top: 0; }
   .orb-2 { right: 40px; top: 360px; width: 220px; height: 220px; }
   /* phones: hub on top, the seven points listed below it */
-  /* phones: hub on top, then all six arms as a numbered list, always shown */
-  .octo { aspect-ratio: auto; margin-top: 56px; }
-  .octo-arms { display: none; }
-  .hub { position: static; transform: none !important; width: auto; min-height: 0; margin-bottom: 18px; cursor: default; }
-  .hub-hint { display: none; }
-  .arms { counter-reset: arm; display: grid; gap: 10px; }
-  .arm, .arm-l, .arm-r { position: static !important; opacity: 1 !important; transform: none !important; max-width: none; text-align: left; counter-increment: arm; padding: 16px 16px 14px; border-radius: 18px; background: #fff; border: 1px solid rgba(23, 23, 23, 0.1); }
-  .arm-label, .arm.on .arm-label, .octo[data-active] .arm:not(.on) .arm-label { display: block; width: 100%; padding: 0; border: 0; border-radius: 0; background: none; color: var(--ink); opacity: 1; transform: none !important; cursor: default; font-size: 17px; font-weight: 700; line-height: 1.3; }
-  .arm-label::before { content: counter(arm) ". "; color: var(--hub-blue-deep); }
-  .arm-subs, .arm-up .arm-subs, .arm.on .arm-subs { position: static; width: auto; max-width: none; margin: 6px 0 0; padding: 0; border: 0; background: none; box-shadow: none; opacity: 1; transform: none; pointer-events: auto; font-size: 16px; color: var(--ink-2); }
-  .arm-subs::before { display: none; }
-  .arm-example { font-size: 15px; }
   .belief { padding: 80px 16px; }
   .hero-link { margin-left: 0; }
   /* What's different: the billboard stacks, generic line above the With You line */
